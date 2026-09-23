@@ -90,6 +90,22 @@ O acesso é protegido por sessão em cookie `httpOnly` (a senha é guardada com 
 
 ---
 
+## 🌐 Site no ar
+
+| | |
+| --- | --- |
+| **Link público (ao vivo)** | https://3001-i10sqlwfup8i72vzhxh9z.e2b.app |
+| **Painel da empresa** | https://3001-i10sqlwfup8i72vzhxh9z.e2b.app/admin |
+| **Repositório** | https://github.com/AXSaiMID/healthy-menu-floripa |
+
+O site roda em **modo produção** (bundle otimizado, gzip e cache de assets). Ele é servido pelo
+proxy da plataforma e vale enquanto este ambiente estiver ativo.
+
+Para um endereço definitivo, com domínio próprio e banco persistente, siga o
+**[DEPLOY.md](DEPLOY.md)** — há um `Dockerfile` e um `render.yaml` prontos.
+
+---
+
 ## Como rodar
 
 Requisitos: **Node.js 20.11+** (usa o SQLite nativo do Node 22).
@@ -118,11 +134,15 @@ Senha:  healthy2024
 ### Produção
 
 ```bash
-npm run build     # gera o bundle otimizado em dist/
-npm start         # serve o site + API na porta 3001 (variável PORT para alterar)
+npm run build                  # gera o bundle otimizado em dist/
+NODE_ENV=production npm start  # serve o site + API na porta 3001
 # ou
-npm run serve     # build + start em um comando
+npm run serve                  # build + start em um comando
 ```
+
+Em produção o servidor serve o `dist/` com compressão gzip, cache imutável nos assets,
+`robots.txt` e `sitemap.xml` gerados na hora (com as URLs dos produtos) e o painel
+marcado como `noindex`. Requer **Node 22.5+**.
 
 ### Testes rápidos
 
@@ -153,6 +173,9 @@ lista arquivos de foto que nenhum produto está usando.
 ## Estrutura do projeto
 
 ```
+Dockerfile              Imagem de produção (Railway, Fly, VPS…)
+render.yaml             Blueprint do Render (deploy com um clique)
+DEPLOY.md               Passo a passo para publicar com domínio próprio
 server/                 API Express + banco SQLite
   db.js                 Conexão, schema e migrações leves
   auth.js               Sessões, hash de senha e middleware
@@ -191,6 +214,8 @@ scripts/smoke.mjs       Testes de ponta a ponta da API
 | GET/POST/PUT/DELETE | `/api/admin/expenses/:id` | Lançamentos financeiros |
 | GET | `/api/admin/customers` | Base de clientes consolidada |
 | GET/PUT | `/api/admin/settings` | Configurações da empresa |
+| GET | `/api/health` | Verificação de saúde (usada pelas hospedagens) |
+| GET | `/robots.txt` · `/sitemap.xml` | SEO — gerados dinamicamente com o domínio em uso |
 
 ## Personalização rápida
 
@@ -212,6 +237,7 @@ scripts/smoke.mjs       Testes de ponta a ponta da API
 | `ADMIN_EMAIL` / `ADMIN_PASSWORD` | `admin@healthymenufloripa.com.br` / `healthy2024` | Credenciais criadas na primeira execução |
 | `NODE_ENV=production` | — | Serve o bundle de `dist/` em vez do Vite |
 | `COOKIE_SECURE=true` | — | Marca o cookie de sessão como `Secure` (use atrás de HTTPS) |
+| `SITE_URL` | detectado da conexão | Endereço final do site, usado no `robots.txt` e no `sitemap.xml` |
 
 ---
 

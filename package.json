@@ -5,7 +5,7 @@
   "description": "Site institucional + loja e painel administrativo da Healthy Menu Floripa",
   "type": "module",
   "engines": {
-    "node": ">=20.11"
+    "node": ">=22.5.0"
   },
   "scripts": {
     "dev": "node scripts/dev.js",
@@ -21,6 +21,7 @@
     "@fontsource-variable/fraunces": "^5.1.1",
     "@fontsource-variable/plus-jakarta-sans": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "compression": "^1.8.2",
     "cookie-parser": "^1.4.7",
     "express": "^4.21.2",
     "lucide-react": "^0.468.0",
