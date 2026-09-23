@@ -8,6 +8,48 @@ crocantes por fora), hoje vendidos na região Norte da Ilha e em expansão para 
 
 ---
 
+## Identidade visual
+
+A marca é construída a partir da **maçã verde** da logo oficial, com "Seu cardápio saudável"
+como assinatura de marca.
+
+| Elemento | Onde está | Observação |
+| --- | --- | --- |
+| Logo em vetor | `public/logo.svg` | Disco com o nome na curva, maçã, folha e a assinatura manuscrita |
+| Maçã (símbolo) | `src/components/Logo.jsx` | SVG inline, 3 tons: `color`, `mono-dark` e `mono-light` |
+| Favicon | `public/favicon.svg` | Maçã sobre disco verde escuro |
+
+### Paleta
+
+| Token | Uso | Cor |
+| --- | --- | --- |
+| `leaf-*` | Verde da marca: textos, botões, cabeçalhos | `#2F6B32` (600) · `#163F23` (900) |
+| `lime-*` | Verde-claro da maçã: acentos, CTAs, selos | `#A9D86E` (400) · `#92C951` (500) |
+| `cream-*` | Fundos claros esverdeados | `#F8FBF5` (100) |
+| `sage-*` | Estados neutros e de sucesso | `#6D9A63` (500) |
+| `cacao-*` | Reservado a detalhes de chocolate | `#241209` (900) |
+
+Tipografia: **Fraunces** (títulos), **Plus Jakarta Sans** (texto) e **Caveat** (assinatura
+manuscrita, usada em destaques como "brownie de verdade").
+
+> Para usar o PNG original da logo em vez do vetor, salve-o como `public/logo.png` e troque o
+> componente `<Logo />` por `<img src="/logo.png" />` — ou substitua `public/logo.svg`.
+
+### Animações
+
+- **Revelação no scroll** — `<Reveal>` e `<Stagger>` (`src/components/motion.jsx`) com
+  `IntersectionObserver`; cada elemento aparece uma única vez, com entrada escalonada.
+- **Micro-interações** — botões com brilho (`btn-shine`) e leve elevação, cards que sobem no
+  hover, zoom suave nas fotos, ícone do carrinho que balança ao adicionar item.
+- **Contadores animados** no hero (preço inicial, itens, avaliação) com `useCountUp`.
+- **Parallax** discreto na foto do hero e flutuações de folhas/gradientes nas seções.
+- **Faixa infinita** com as frases da marca, que pausa no hover.
+- **Confete** na tela de pedido concluído e transição suave entre páginas.
+- Tudo é desativado automaticamente quando o sistema pede **"reduzir movimento"**
+  (`prefers-reduced-motion`).
+
+---
+
 ## O que está pronto
 
 ### Site público
@@ -108,13 +150,16 @@ server/                 API Express + banco SQLite
   index.js              Servidor (API + Vite em dev / dist em produção)
 
 src/
-  components/           Header, Footer, CartDrawer, ProductCard, UI base
+  components/           Header, Footer, CartDrawer, ProductCard, Logo, motion, UI base
+  lib/hooks.js          Animação: revelar no scroll, contadores, parallax, scroll
   pages/                Home, Menu, ProductDetail, CartPage, About, Delivery, Contact
   admin/                AdminApp, Login, AdminLayout, Dashboard, Orders, Products,
                         Finance, Customers, Settings
   lib/                  api.js, cart.jsx, site.jsx, toast.jsx, format.js, whatsapp.js
   index.css             Design system (Tailwind 4 + paleta cacau/caramelo/creme/sálvia)
 
+public/logo.svg         Logo oficial em vetor
+public/favicon.svg      Ícone do navegador (maçã da marca)
 public/images/          Fotografia dos produtos
 scripts/smoke.mjs       Testes de ponta a ponta da API
 ```
@@ -140,7 +185,10 @@ scripts/smoke.mjs       Testes de ponta a ponta da API
 - **Preços, fotos e custos:** Admin → Produtos. O campo **custo de produção** alimenta o lucro real do financeiro.
 - **Regras de entrega:** Admin → Configurações → pedido mínimo, taxa e frete grátis.
 - **Cores e tipografia:** `src/index.css` no bloco `@theme`.
-- **Fotografias:** substitua os arquivos em `public/images/` mantendo os mesmos nomes.
+- **Fotografias:** substitua os arquivos em `public/images/` mantendo os mesmos nomes
+  (`hero-brownie-fresh.jpg` é a foto de abertura, verde e aberta).
+- **Logo:** `public/logo.svg` ou `src/components/Logo.jsx` para o símbolo do cabeçalho.
+- **Velocidade das animações:** `hf-*` e as classes `animate-*` em `src/index.css`.
 
 ## Variáveis de ambiente (opcionais)
 

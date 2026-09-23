@@ -1,6 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <rect width="64" height="64" rx="16" fill="#2A1810" />
-  <rect x="10" y="20" width="44" height="30" rx="8" fill="#F4EADC" />
-  <rect x="15" y="26" width="34" height="6" rx="3" fill="#E3D0BF" />
-  <path d="M18 42c3-4 6.5-4 9.5 0s6.5 4 9.5 0 6.5-4 9.5 0" stroke="#C88A4B" stroke-width="4" stroke-linecap="round" fill="none" />
+  <defs>
+    <linearGradient id="f" x1="0" y1="0" x2="0.4" y2="1">
+      <stop offset="0%" stop-color="#BCE283" />
+      <stop offset="55%" stop-color="#A0D364" />
+      <stop offset="100%" stop-color="#7EB445" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#163F23" />
+  <path d="M32 20c-4.2-6.6-11.4-9.6-18-7.2-7.8 2.7-12 11.4-10.8 21 1.2 10.8 9 22.8 17.4 25.2 3.6 1.2 6-.6 8.4-.6s4.8 1.8 8.4.6c8.4-2.4 16.2-14.4 17.4-25.2 1.2-9.6-3-18.3-10.8-21-6.6-2.4-13.8.6-18 7.2z" fill="url(#f)" />
+  <path d="M31.4 20c-.6-4.8.6-8.4 3-10.8.9 3.6.3 7.2-1.2 10.2z" fill="#2F6B32" />
+  <path d="M36.2 9.2c4.2-4.8 10.8-6 15-3.6-1.8 5.4-7.8 9-13.2 7.8-1.2-.3-2.1-2.4-1.8-4.2z" fill="#A9D86E" transform="rotate(-14 44 9)" />
+  <path d="M20.6 39.2c4.2 0 5.4-6.6 7.8-6.6s2.4 6.6 3.6 6.6 1.8-7.2 4.2-7.2 3 7.8 7.2 10.2" fill="none" stroke="#ffffff" stroke-width="3.3" stroke-linecap="round" stroke-linejoin="round" />
 </svg>

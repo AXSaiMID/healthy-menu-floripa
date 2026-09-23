@@ -8,32 +8,30 @@ export function Eyebrow({ children, className }) {
   return <p className={cx('eyebrow', className)}>{children}</p>;
 }
 
-export function SectionHeading({ eyebrow, title, description, align = 'left', className }) {
+export function SectionHeading({ eyebrow, title, description, align = 'left', className, titleClassName }) {
   return (
-    <div
-      className={cx(
-        'max-w-2xl',
-        align === 'center' && 'mx-auto text-center',
-        className,
-      )}
-    >
+    <div className={cx('max-w-2xl', align === 'center' && 'mx-auto text-center', className)}>
       {eyebrow && <Eyebrow className="mb-3">{eyebrow}</Eyebrow>}
-      <h2 className="text-3xl leading-[1.1] text-cacao-900 sm:text-4xl lg:text-[2.75rem]">{title}</h2>
-      {description && <p className="mt-4 text-[0.98rem] leading-relaxed text-cacao-600">{description}</p>}
+      <h2 className={cx('text-3xl leading-[1.1] text-leaf-900 sm:text-4xl lg:text-[2.75rem]', titleClassName)}>
+        {title}
+      </h2>
+      {description && (
+        <p className="mt-4 text-[0.98rem] leading-relaxed text-leaf-700">{description}</p>
+      )}
     </div>
   );
 }
 
 const BUTTON_VARIANTS = {
   primary:
-    'bg-cacao-900 text-cream-100 hover:bg-cacao-800 active:bg-cacao-950 shadow-soft hover:shadow-lift',
-  caramel:
-    'bg-caramel-500 text-cacao-950 hover:bg-caramel-400 active:bg-caramel-600 shadow-soft hover:shadow-lift',
-  outline: 'border border-cacao-300 text-cacao-800 hover:border-cacao-900 hover:bg-white',
-  ghost: 'text-cacao-700 hover:bg-cacao-100',
+    'bg-leaf-900 text-cream-50 hover:bg-leaf-800 active:bg-leaf-950 shadow-soft hover:shadow-lift',
+  lime: 'bg-lime-400 text-leaf-950 hover:bg-lime-300 active:bg-lime-500 shadow-soft hover:shadow-glow',
+  outline:
+    'border border-leaf-300 bg-white/60 text-leaf-800 hover:border-leaf-600 hover:bg-white',
+  ghost: 'text-leaf-700 hover:bg-leaf-100',
   whatsapp: 'bg-[#25D366] text-[#062e14] hover:brightness-105 shadow-soft hover:shadow-lift',
   danger: 'bg-red-600 text-white hover:bg-red-700',
-  subtle: 'bg-cream-200 text-cacao-800 hover:bg-cream-300',
+  subtle: 'bg-leaf-100 text-leaf-800 hover:bg-leaf-200',
 };
 
 const BUTTON_SIZES = {
@@ -48,14 +46,20 @@ export function Button({
   size = 'md',
   className,
   children,
+  shine = true,
   ...props
 }) {
+  const isDisabled = props.disabled;
+
   return (
     <Tag
       className={cx(
-        'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 disabled:cursor-not-allowed disabled:opacity-50',
+        'group/btn btn-shine relative inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-300',
+        'hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.97]',
+        'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0',
         BUTTON_VARIANTS[variant] ?? BUTTON_VARIANTS.primary,
         BUTTON_SIZES[size] ?? BUTTON_SIZES.md,
+        shine && !isDisabled && 'btn-shine',
         className,
       )}
       {...props}
@@ -65,19 +69,20 @@ export function Button({
   );
 }
 
-export function Badge({ children, tone = 'cream', className }) {
+export function Badge({ children, tone = 'leaf', className, pulse = false }) {
   const tones = {
-    cream: 'bg-cream-200 text-cacao-700',
-    caramel: 'bg-caramel-200 text-cacao-800',
+    leaf: 'bg-leaf-100 text-leaf-800',
+    lime: 'bg-lime-200 text-leaf-900',
     sage: 'bg-sage-100 text-sage-700',
-    dark: 'bg-cacao-900 text-cream-100',
-    outline: 'border border-cacao-200 text-cacao-600',
+    dark: 'bg-leaf-900 text-cream-50',
+    outline: 'border border-leaf-200 text-leaf-700',
   };
   return (
     <span
       className={cx(
         'inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[0.68rem] font-semibold uppercase tracking-wide',
-        tones[tone] ?? tones.cream,
+        tones[tone] ?? tones.leaf,
+        pulse && 'animate-pop',
         className,
       )}
     >
@@ -86,10 +91,14 @@ export function Badge({ children, tone = 'cream', className }) {
   );
 }
 
-export function Card({ className, children, ...props }) {
+export function Card({ className, children, hover = false, ...props }) {
   return (
     <div
-      className={cx('rounded-card border border-cream-300 bg-white shadow-soft', className)}
+      className={cx(
+        'rounded-card border border-leaf-100 bg-white shadow-soft',
+        hover && 'card-hover',
+        className,
+      )}
       {...props}
     >
       {children}
@@ -110,18 +119,20 @@ export function Spinner({ className }) {
 
 export function EmptyState({ icon, title, description, action }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-card border border-dashed border-cream-300 bg-white/60 px-6 py-14 text-center">
-      {icon && <div className="mb-4 text-cacao-300">{icon}</div>}
-      <h3 className="text-lg text-cacao-800">{title}</h3>
-      {description && <p className="mt-2 max-w-md text-sm text-cacao-500">{description}</p>}
+    <div className="animate-bounce-in flex flex-col items-center justify-center rounded-card border border-dashed border-leaf-200 bg-white/70 px-6 py-14 text-center">
+      {icon && <div className="mb-4 text-leaf-400">{icon}</div>}
+      <h3 className="text-lg text-leaf-900">{title}</h3>
+      {description && <p className="mt-2 max-w-md text-sm text-leaf-600">{description}</p>}
       {action && <div className="mt-6">{action}</div>}
     </div>
   );
 }
 
 export function Skeleton({ className }) {
-  return <div className={cx('animate-pulse rounded-xl bg-cream-200', className)} />;
+  return <div className={cx('animate-pulse rounded-xl bg-leaf-100', className)} />;
 }
+
+/* ─────────────────────────────── Ícones ─────────────────────────────── */
 
 export function WhatsAppIcon({ className = 'h-5 w-5' }) {
   return (
@@ -156,6 +167,22 @@ export function LeafIcon({ className = 'h-5 w-5' }) {
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className={className} aria-hidden="true">
       <path d="M4 20c0-8 5-14 16-15 0 11-5 15-12 15-2 0-4 0-4 0z" strokeLinejoin="round" />
       <path d="M4 20c3-4 7-7 11-8" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+export function StarIcon({ className = 'h-4 w-4', filled = true, style }) {
+  return (
+    <svg viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.6" className={className} style={style} aria-hidden="true">
+      <path d="M12 2.6l2.9 6.2 6.8.8-5 4.7 1.3 6.8L12 17.8 6 21.1l1.3-6.8-5-4.7 6.8-.8z" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function SparkleIcon({ className = 'h-4 w-4' }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M12 2l1.8 6.2L20 10l-6.2 1.8L12 18l-1.8-6.2L4 10l6.2-1.8z" />
     </svg>
   );
 }

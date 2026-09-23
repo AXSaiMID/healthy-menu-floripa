@@ -9,8 +9,8 @@ export function PageHeader({ eyebrow, title, description, actions }) {
     <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
       <div>
         {eyebrow && <p className="eyebrow">{eyebrow}</p>}
-        <h1 className="mt-1.5 text-3xl text-cacao-900">{title}</h1>
-        {description && <p className="mt-2 max-w-2xl text-[0.9rem] text-cacao-500">{description}</p>}
+        <h1 className="mt-1.5 text-3xl text-leaf-900">{title}</h1>
+        {description && <p className="mt-2 max-w-2xl text-[0.9rem] text-leaf-500">{description}</p>}
       </div>
       {actions && <div className="flex flex-wrap gap-2.5">{actions}</div>}
     </div>
@@ -23,8 +23,8 @@ export function Panel({ title, description, actions, className, children, padded
       {(title || actions) && (
         <header className="flex flex-wrap items-center justify-between gap-3 border-b border-cream-200 px-5 py-4">
           <div>
-            {title && <h2 className="text-[1.05rem] text-cacao-900">{title}</h2>}
-            {description && <p className="mt-0.5 text-[0.8rem] text-cacao-500">{description}</p>}
+            {title && <h2 className="text-[1.05rem] text-leaf-900">{title}</h2>}
+            {description && <p className="mt-0.5 text-[0.8rem] text-leaf-500">{description}</p>}
           </div>
           {actions && <div className="flex flex-wrap gap-2">{actions}</div>}
         </header>
@@ -37,9 +37,9 @@ export function Panel({ title, description, actions, className, children, padded
 export function StatCard({ label, value, hint, tone = 'default', icon: Icon }) {
   const tones = {
     default: 'bg-white',
-    accent: 'bg-cacao-900 text-cream-100',
+    accent: 'bg-leaf-900 text-cream-100',
     sage: 'bg-sage-100',
-    caramel: 'bg-caramel-100',
+    lime: 'bg-lime-100',
     danger: 'bg-red-50',
   };
   const isDark = tone === 'accent';
@@ -50,25 +50,25 @@ export function StatCard({ label, value, hint, tone = 'default', icon: Icon }) {
         <p
           className={cx(
             'text-[0.72rem] font-bold uppercase tracking-wider',
-            isDark ? 'text-caramel-300' : 'text-caramel-600',
+            isDark ? 'text-lime-300' : 'text-lime-600',
           )}
         >
           {label}
         </p>
         {Icon && (
-          <Icon className={cx('h-4 w-4 shrink-0', isDark ? 'text-cream-200/50' : 'text-cacao-300')} />
+          <Icon className={cx('h-4 w-4 shrink-0', isDark ? 'text-cream-200/50' : 'text-leaf-300')} />
         )}
       </div>
       <p
         className={cx(
           'mt-3 font-display text-[1.9rem] font-semibold leading-none',
-          isDark ? 'text-cream-100' : 'text-cacao-900',
+          isDark ? 'text-cream-100' : 'text-leaf-900',
         )}
       >
         {value}
       </p>
       {hint && (
-        <p className={cx('mt-2 text-[0.76rem]', isDark ? 'text-cream-200/60' : 'text-cacao-400')}>
+        <p className={cx('mt-2 text-[0.76rem]', isDark ? 'text-cream-200/60' : 'text-leaf-400')}>
           {hint}
         </p>
       )}
@@ -109,7 +109,7 @@ export function Modal({ open, onClose, title, description, children, footer, siz
 
   return (
     <>
-      <div className="animate-fade fixed inset-0 z-[70] bg-cacao-950/45 backdrop-blur-sm" onClick={onClose} />
+      <div className="animate-fade fixed inset-0 z-[70] bg-leaf-950/45 backdrop-blur-sm" onClick={onClose} />
       <div className="fixed inset-0 z-[71] flex items-start justify-center overflow-y-auto p-4 sm:items-center">
         <div
           className={cx(
@@ -119,13 +119,13 @@ export function Modal({ open, onClose, title, description, children, footer, siz
         >
           <header className="flex items-start justify-between gap-4 border-b border-cream-300 px-6 py-4">
             <div>
-              <h2 className="text-[1.2rem] text-cacao-900">{title}</h2>
-              {description && <p className="mt-1 text-[0.82rem] text-cacao-500">{description}</p>}
+              <h2 className="text-[1.2rem] text-leaf-900">{title}</h2>
+              {description && <p className="mt-1 text-[0.82rem] text-leaf-500">{description}</p>}
             </div>
             <button
               type="button"
               onClick={onClose}
-              className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-cream-300 bg-white text-cacao-600 transition hover:border-cacao-900"
+              className="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-cream-300 bg-white text-leaf-600 transition hover:border-leaf-900"
               aria-label="Fechar"
             >
               <X className="h-4 w-4" />
@@ -154,10 +154,10 @@ export function Button({
   ...props
 }) {
   const variants = {
-    primary: 'bg-cacao-900 text-cream-100 hover:bg-cacao-800',
-    caramel: 'bg-caramel-500 text-cacao-950 hover:bg-caramel-400',
-    outline: 'border border-cream-300 bg-white text-cacao-800 hover:border-cacao-900',
-    ghost: 'text-cacao-600 hover:bg-cream-200',
+    primary: 'bg-leaf-900 text-cream-100 hover:bg-leaf-800',
+    lime: 'bg-lime-500 text-leaf-950 hover:bg-lime-400',
+    outline: 'border border-cream-300 bg-white text-leaf-800 hover:border-leaf-900',
+    ghost: 'text-leaf-600 hover:bg-cream-200',
     danger: 'bg-red-600 text-white hover:bg-red-700',
     whatsapp: 'bg-[#25D366] text-[#062e14] hover:brightness-105',
   };
@@ -204,7 +204,7 @@ export function WhatsAppButton({ phone, message, children = 'WhatsApp' }) {
 export function BarChart({ data, valueKey = 'revenue', formatter = brl, height = 180 }) {
   if (!data?.length) {
     return (
-      <div className="grid h-40 place-items-center rounded-2xl border border-dashed border-cream-300 text-[0.85rem] text-cacao-400">
+      <div className="grid h-40 place-items-center rounded-2xl border border-dashed border-cream-300 text-[0.85rem] text-leaf-400">
         Sem dados no período selecionado.
       </div>
     );
@@ -221,17 +221,17 @@ export function BarChart({ data, valueKey = 'revenue', formatter = brl, height =
           return (
             <div key={item.day} className="group relative flex flex-1 flex-col justify-end">
               <div
-                className="w-full rounded-t-md bg-caramel-400 transition-all duration-500 hover:bg-caramel-500"
+                className="w-full rounded-t-md bg-lime-400 transition-all duration-500 hover:bg-lime-500"
                 style={{ height: `${pct}%` }}
               />
-              <div className="pointer-events-none absolute -top-9 left-1/2 z-10 hidden -translate-x-1/2 whitespace-nowrap rounded-lg bg-cacao-900 px-2.5 py-1.5 text-[0.7rem] font-semibold text-cream-100 group-hover:block">
+              <div className="pointer-events-none absolute -top-9 left-1/2 z-10 hidden -translate-x-1/2 whitespace-nowrap rounded-lg bg-leaf-900 px-2.5 py-1.5 text-[0.7rem] font-semibold text-cream-100 group-hover:block">
                 {formatter(value)}
               </div>
             </div>
           );
         })}
       </div>
-      <div className="mt-2 flex justify-between text-[0.68rem] text-cacao-400">
+      <div className="mt-2 flex justify-between text-[0.68rem] text-leaf-400">
         <span>{data[0]?.day?.slice(8, 10)}/{data[0]?.day?.slice(5, 7)}</span>
         <span>
           {data[data.length - 1]?.day?.slice(8, 10)}/{data[data.length - 1]?.day?.slice(5, 7)}
@@ -246,11 +246,11 @@ export function ProgressRow({ label, value, total, hint }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3 text-[0.84rem]">
-        <span className="truncate font-medium text-cacao-700">{label}</span>
-        <span className="shrink-0 font-semibold text-cacao-900">{hint ?? brl(value)}</span>
+        <span className="truncate font-medium text-leaf-700">{label}</span>
+        <span className="shrink-0 font-semibold text-leaf-900">{hint ?? brl(value)}</span>
       </div>
       <div className="mt-1.5 h-2 overflow-hidden rounded-full bg-cream-200">
-        <div className="h-full rounded-full bg-caramel-400 transition-all duration-500" style={{ width: `${pct}%` }} />
+        <div className="h-full rounded-full bg-lime-400 transition-all duration-500" style={{ width: `${pct}%` }} />
       </div>
     </div>
   );
@@ -265,7 +265,7 @@ export function Table({ head, children, className }) {
             {head.map((cell, index) => (
               <th
                 key={index}
-                className="whitespace-nowrap px-4 py-3 text-[0.7rem] font-bold uppercase tracking-wider text-caramel-600"
+                className="whitespace-nowrap px-4 py-3 text-[0.7rem] font-bold uppercase tracking-wider text-lime-600"
               >
                 {cell}
               </th>

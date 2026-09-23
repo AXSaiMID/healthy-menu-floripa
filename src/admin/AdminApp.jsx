@@ -54,8 +54,8 @@ export default function AdminApp() {
     return (
       <div className="grid min-h-screen place-items-center bg-cream-100">
         <div className="flex flex-col items-center gap-3">
-          <span className="h-9 w-9 animate-spin rounded-full border-2 border-cacao-300 border-t-cacao-900" />
-          <p className="text-sm text-cacao-500">Carregando painel…</p>
+          <span className="h-9 w-9 animate-spin rounded-full border-2 border-leaf-300 border-t-cacao-900" />
+          <p className="text-sm text-leaf-500">Carregando painel…</p>
         </div>
       </div>
     );

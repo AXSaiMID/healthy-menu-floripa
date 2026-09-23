@@ -1,43 +1,61 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Paleta da marca: cacau, caramelo, creme e sálvia */
-  --color-cacao-50: #faf6f2;
-  --color-cacao-100: #f2e8df;
-  --color-cacao-200: #e3d0bf;
-  --color-cacao-300: #c9ab92;
-  --color-cacao-400: #a97f5f;
-  --color-cacao-500: #8a5734;
-  --color-cacao-600: #6b4227;
-  --color-cacao-700: #52321f;
-  --color-cacao-800: #3b2417;
-  --color-cacao-900: #2a1810;
-  --color-cacao-950: #1a0f09;
+  /* ══════════════════════════════════════════════════════════════════
+     Identidade Healthy Menu Floripa
+     Verde da logo + verde-claro da maçã + branco esverdeado de fundo.
+     O chocolate fica reservado para detalhes de brownie.
+     ══════════════════════════════════════════════════════════════════ */
 
-  --color-caramel-100: #fdf2e2;
-  --color-caramel-200: #f9e0bf;
-  --color-caramel-300: #efc79a;
-  --color-caramel-400: #dda96e;
-  --color-caramel-500: #c88a4b;
-  --color-caramel-600: #a86f36;
+  /* Verde principal — folha */
+  --color-leaf-50: #f3f9ee;
+  --color-leaf-100: #e4f1da;
+  --color-leaf-200: #c9e3b8;
+  --color-leaf-300: #a3cd8c;
+  --color-leaf-400: #79b562;
+  --color-leaf-500: #57a145;   /* verde de apoio, botões secundários */
+  --color-leaf-600: #3f8537;
+  --color-leaf-700: #2f6b32;   /* verde da marca */
+  --color-leaf-800: #245530;
+  --color-leaf-900: #163f23;   /* verde escuro do nome na logo */
+  --color-leaf-950: #0c2a16;
 
-  --color-cream-50: #fffdfa;
-  --color-cream-100: #fbf6ef;
-  --color-cream-200: #f4eadc;
-  --color-cream-300: #e9dbc6;
+  /* Verde claro da maçã — acento alegre */
+  --color-lime-100: #f0f8da;
+  --color-lime-200: #dff0b8;
+  --color-lime-300: #c7e793;
+  --color-lime-400: #a9d86e;   /* maçã da logo */
+  --color-lime-500: #92c951;
+  --color-lime-600: #76ac39;
+  --color-lime-700: #5b882c;
 
-  --color-sage-100: #eaf0e2;
-  --color-sage-200: #d5e0c7;
-  --color-sage-400: #9bb289;
-  --color-sage-500: #7a9068;
-  --color-sage-600: #5e7350;
-  --color-sage-700: #47573d;
+  /* Fundos — branco esverdeado */
+  --color-cream-50: #ffffff;
+  --color-cream-100: #f8fbf5;
+  --color-cream-200: #eff5e9;
+  --color-cream-300: #e0ebd7;
+
+  /* Verde-sálvia para estados neutros e de sucesso */
+  --color-sage-100: #e8f1e4;
+  --color-sage-200: #d3e4cd;
+  --color-sage-400: #8fb585;
+  --color-sage-500: #6d9a63;
+  --color-sage-600: #4f7847;
+  --color-sage-700: #3a5b34;
+
+  /* Chocolate — só para detalhes dos brownies */
+  --color-cacao-100: #f0e4da;
+  --color-cacao-700: #4a3122;
+  --color-cacao-800: #352116;
+  --color-cacao-900: #241209;
 
   --font-display: 'Fraunces Variable', 'Fraunces', ui-serif, Georgia, serif;
+  --font-hand: 'Caveat Variable', 'Caveat', ui-rounded, cursive;
   --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
 
-  --shadow-soft: 0 1px 2px rgb(42 24 16 / 0.04), 0 8px 24px -8px rgb(42 24 16 / 0.12);
-  --shadow-lift: 0 2px 4px rgb(42 24 16 / 0.05), 0 22px 48px -18px rgb(42 24 16 / 0.28);
+  --shadow-soft: 0 1px 2px rgb(22 63 35 / 0.05), 0 10px 26px -10px rgb(22 63 35 / 0.14);
+  --shadow-lift: 0 2px 6px rgb(22 63 35 / 0.06), 0 26px 54px -20px rgb(22 63 35 / 0.3);
+  --shadow-glow: 0 18px 40px -16px rgb(146 201 81 / 0.55);
 
   --radius-card: 1.5rem;
 }
@@ -55,9 +73,10 @@
 
   body {
     background-color: var(--color-cream-100);
-    color: var(--color-cacao-900);
+    color: var(--color-leaf-900);
     font-family: var(--font-sans);
     font-feature-settings: 'ss01';
+    overflow-x: hidden;
   }
 
   h1,
@@ -65,13 +84,18 @@
   h3,
   .font-display {
     font-family: var(--font-display);
-    font-variation-settings: 'SOFT' 40, 'WONK' 1;
-    letter-spacing: -0.02em;
+    font-variation-settings: 'SOFT' 45, 'WONK' 1;
+    letter-spacing: -0.022em;
+  }
+
+  .font-hand {
+    font-family: var(--font-hand);
+    letter-spacing: 0.01em;
   }
 
   ::selection {
-    background: var(--color-caramel-300);
-    color: var(--color-cacao-900);
+    background: var(--color-lime-300);
+    color: var(--color-leaf-950);
   }
 
   input,
@@ -81,8 +105,25 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-caramel-500);
+    outline: 2px solid var(--color-leaf-600);
     outline-offset: 2px;
+  }
+
+  /* Barra de rolagem discreta e verde */
+  ::-webkit-scrollbar {
+    width: 11px;
+    height: 11px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-cream-200);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-leaf-300);
+    border-radius: 999px;
+    border: 3px solid var(--color-cream-200);
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-leaf-500);
   }
 }
 
@@ -101,31 +142,42 @@
   }
 
   .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
     font-size: 0.72rem;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--color-caramel-600);
+    color: var(--color-leaf-600);
+  }
+
+  .eyebrow::before {
+    content: '';
+    width: 1.5rem;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--color-lime-400), transparent);
   }
 
   .field {
     width: 100%;
-    border-radius: 0.85rem;
+    border-radius: 0.9rem;
     border: 1px solid var(--color-cream-300);
     background: #fff;
     padding: 0.7rem 0.9rem;
     font-size: 0.95rem;
-    color: var(--color-cacao-900);
-    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    color: var(--color-leaf-900);
+    transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
   }
 
   .field::placeholder {
-    color: var(--color-cacao-300);
+    color: var(--color-leaf-400);
   }
 
   .field:focus {
-    border-color: var(--color-caramel-400);
-    box-shadow: 0 0 0 4px rgb(221 169 110 / 0.18);
+    border-color: var(--color-leaf-400);
+    box-shadow: 0 0 0 4px rgb(121 181 98 / 0.18);
     outline: none;
   }
 
@@ -135,7 +187,7 @@
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.02em;
-    color: var(--color-cacao-700);
+    color: var(--color-leaf-800);
   }
 
   .chip {
@@ -143,23 +195,164 @@
     align-items: center;
     gap: 0.3rem;
     border-radius: 999px;
-    background: var(--color-cream-200);
+    background: var(--color-leaf-100);
     padding: 0.25rem 0.65rem;
     font-size: 0.7rem;
     font-weight: 600;
-    color: var(--color-cacao-700);
+    color: var(--color-leaf-800);
+  }
+
+  /* Cartão com brilho suave ao passar o mouse */
+  .card-hover {
+    transition: transform 0.38s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.38s ease,
+      border-color 0.38s ease;
+  }
+
+  .card-hover:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lift);
+    border-color: var(--color-leaf-300);
+  }
+
+  /* Botão com varredura de brilho */
+  .btn-shine {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+  }
+
+  .btn-shine::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 0.45) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+  }
+
+  .btn-shine:hover::after {
+    transform: translateX(120%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, var(--color-lime-400), var(--color-leaf-500) 55%, var(--color-leaf-700));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .glass {
+    background: rgb(255 255 255 / 0.72);
+    backdrop-filter: blur(14px) saturate(150%);
   }
 
   .grain {
-    background-image: radial-gradient(rgb(42 24 16 / 0.045) 1px, transparent 0);
+    background-image: radial-gradient(rgb(22 63 35 / 0.05) 1px, transparent 0);
     background-size: 18px 18px;
   }
+
+  /* Onda decorativa entre seções */
+  .wave-top,
+  .wave-bottom {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    pointer-events: none;
+  }
+
+  .wave-top {
+    top: -1px;
+  }
+
+  .wave-bottom {
+    bottom: -1px;
+    transform: rotate(180deg);
+  }
 }
+
+/* ═══════════════════════════ Animações ═══════════════════════════ */
+
+/* Revelação no scroll (controlada por IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal[data-variant='left'] {
+  transform: translate3d(-32px, 0, 0);
+}
+
+.reveal[data-variant='right'] {
+  transform: translate3d(32px, 0, 0);
+}
+
+.reveal[data-variant='zoom'] {
+  transform: scale(0.93);
+}
+
+.reveal[data-variant='blur'] {
+  filter: blur(9px);
+  transform: translate3d(0, 18px, 0);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* ════════ Entrada escalonada em grupo (.stagger > *) ════════ */
+.stagger > * {
+  opacity: 0;
+  transform: translate3d(0, 26px, 0);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.stagger[data-variant='zoom'] > * {
+  transform: scale(0.94);
+}
+
+.stagger[data-variant='left'] > * {
+  transform: translate3d(-30px, 0, 0);
+}
+
+.stagger[data-variant='right'] > * {
+  transform: translate3d(30px, 0, 0);
+}
+
+.stagger[data-variant='blur'] > * {
+  transform: translate3d(0, 18px, 0);
+  filter: blur(8px);
+}
+
+.stagger.is-visible > * {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+.stagger.is-visible > *:nth-child(1) { transition-delay: 0ms; }
+.stagger.is-visible > *:nth-child(2) { transition-delay: 90ms; }
+.stagger.is-visible > *:nth-child(3) { transition-delay: 180ms; }
+.stagger.is-visible > *:nth-child(4) { transition-delay: 270ms; }
+.stagger.is-visible > *:nth-child(5) { transition-delay: 360ms; }
+.stagger.is-visible > *:nth-child(6) { transition-delay: 450ms; }
+.stagger.is-visible > *:nth-child(7) { transition-delay: 540ms; }
+.stagger.is-visible > *:nth-child(8) { transition-delay: 630ms; }
+.stagger.is-visible > *:nth-child(9) { transition-delay: 720ms; }
+.stagger.is-visible > *:nth-child(n + 10) { transition-delay: 800ms; }
 
 @keyframes hf-rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -185,32 +378,197 @@
   }
 }
 
+@keyframes hf-pop {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes hf-bounce-in {
+  0% {
+    transform: translateY(14px) scale(0.9);
+    opacity: 0;
+  }
+  55% {
+    transform: translateY(-4px) scale(1.03);
+    opacity: 1;
+  }
+  100% {
+    transform: none;
+  }
+}
+
+@keyframes hf-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(6deg);
+  }
+}
+
+@keyframes hf-float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(18px, -22px, 0) scale(1.06);
+  }
+  66% {
+    transform: translate3d(-14px, 14px, 0) scale(0.96);
+  }
+}
+
+@keyframes hf-sway {
+  0%,
+  100% {
+    transform: rotate(-5deg);
+  }
+  50% {
+    transform: rotate(5deg);
+  }
+}
+
+@keyframes hf-wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-9deg);
+  }
+  75% {
+    transform: rotate(9deg);
+  }
+}
+
 @keyframes hf-pulse-ring {
   0% {
-    box-shadow: 0 0 0 0 rgb(37 211 102 / 0.5);
+    box-shadow: 0 0 0 0 rgb(37 211 102 / 0.55);
   }
   70% {
-    box-shadow: 0 0 0 16px rgb(37 211 102 / 0);
+    box-shadow: 0 0 0 18px rgb(37 211 102 / 0);
   }
   100% {
     box-shadow: 0 0 0 0 rgb(37 211 102 / 0);
   }
 }
 
+@keyframes hf-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes hf-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes hf-confetti {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(var(--cx, 0px), 110px, 0) rotate(var(--cr, 360deg));
+    opacity: 0;
+  }
+}
+
+@keyframes hf-steam {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scale(0.9);
+  }
+  40% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-16px) scale(1.25);
+  }
+}
+
 .animate-rise {
-  animation: hf-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: hf-rise 0.65s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
 .animate-fade {
-  animation: hf-fade 0.4s ease both;
+  animation: hf-fade 0.45s ease both;
 }
 
 .animate-drawer {
-  animation: hf-slide-left 0.32s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: hf-slide-left 0.34s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-pop {
+  animation: hf-pop 0.45s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-bounce-in {
+  animation: hf-bounce-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-float {
+  animation: hf-float 6s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: hf-float-slow 18s ease-in-out infinite;
+}
+
+.animate-sway {
+  animation: hf-sway 4.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.animate-wiggle {
+  animation: hf-wiggle 0.5s ease-in-out;
 }
 
 .animate-pulse-ring {
   animation: hf-pulse-ring 2.4s infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: hf-shimmer 2.6s linear infinite;
+}
+
+/* Atrasos escalonados para listas */
+.delay-1 { animation-delay: 0.07s; transition-delay: 0.07s; }
+.delay-2 { animation-delay: 0.14s; transition-delay: 0.14s; }
+.delay-3 { animation-delay: 0.21s; transition-delay: 0.21s; }
+.delay-4 { animation-delay: 0.28s; transition-delay: 0.28s; }
+.delay-5 { animation-delay: 0.35s; transition-delay: 0.35s; }
+.delay-6 { animation-delay: 0.42s; transition-delay: 0.42s; }
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: hf-marquee 38s linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -226,7 +584,14 @@
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
   }
 }

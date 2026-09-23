@@ -8,6 +8,7 @@ import {
   SectionHeading,
   WhatsAppIcon,
 } from '../components/ui.jsx';
+import { FloatingDecor, GradientBlobs, Reveal, Stagger } from '../components/motion.jsx';
 import { useSite } from '../lib/site.jsx';
 import { useToast } from '../lib/toast.jsx';
 import { whatsappLink } from '../lib/whatsapp.js';
@@ -61,35 +62,38 @@ export default function Contact() {
 
   return (
     <>
-      <section className="border-b border-cream-300 bg-white py-16">
-        <Container>
-          <SectionHeading
-            eyebrow="Contato"
-            title="Fale com a Healthy Menu Floripa"
-            description="Pedidos, encomendas para eventos, dúvidas sobre entrega ou parcerias: o caminho mais rápido é o WhatsApp."
-          />
+      <section className="relative overflow-hidden border-b border-leaf-100 bg-white py-16">
+        <GradientBlobs className="opacity-60" />
+        <Container className="relative">
+          <Reveal>
+            <SectionHeading
+              eyebrow="Contato"
+              title="Fale com a Healthy Menu Floripa"
+              description="Pedidos, encomendas para eventos, dúvidas sobre entrega ou parcerias: o caminho mais rápido é o WhatsApp."
+            />
+          </Reveal>
         </Container>
       </section>
 
       <Container className="py-16">
         <div className="grid gap-10 lg:grid-cols-[1fr_1.1fr]">
           {/* Canais */}
-          <div className="space-y-4">
+          <Stagger variant="left" className="space-y-4">
             <a
               href={`https://wa.me/${waNumber}?text=${encodeURIComponent('Olá! Vim pelo site 🙂')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-4 rounded-card border border-cream-300 bg-white p-6 shadow-soft transition hover:-translate-y-0.5 hover:shadow-lift"
+              className="flex items-start gap-4 rounded-card border border-leaf-100 bg-white p-6 shadow-soft transition-all duration-400 hover:-translate-y-1.5 hover:border-lime-300 hover:shadow-lift"
             >
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#25D366]/15 text-[#128C4A]">
                 <WhatsAppIcon className="h-6 w-6" />
               </span>
               <div>
-                <h3 className="text-[1.05rem] text-cacao-900">WhatsApp</h3>
-                <p className="mt-1 text-[0.9rem] font-semibold text-cacao-700">
+                <h3 className="text-[1.05rem] text-leaf-900">WhatsApp</h3>
+                <p className="mt-1 text-[0.9rem] font-semibold text-leaf-700">
                   {settings.whatsapp_display}
                 </p>
-                <p className="mt-1 text-[0.8rem] text-cacao-500">
+                <p className="mt-1 text-[0.8rem] text-leaf-500">
                   Resposta rápida em horário comercial. Pedidos e orçamentos.
                 </p>
               </div>
@@ -99,17 +103,17 @@ export default function Contact() {
               href={settings.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-4 rounded-card border border-cream-300 bg-white p-6 shadow-soft transition hover:-translate-y-0.5 hover:shadow-lift"
+              className="flex items-start gap-4 rounded-card border border-leaf-100 bg-white p-6 shadow-soft transition-all duration-400 hover:-translate-y-1.5 hover:border-lime-300 hover:shadow-lift"
             >
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-caramel-200 text-caramel-600">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-lime-200 text-lime-600">
                 <InstagramIcon className="h-6 w-6" />
               </span>
               <div>
-                <h3 className="text-[1.05rem] text-cacao-900">Instagram</h3>
-                <p className="mt-1 text-[0.9rem] font-semibold text-cacao-700">
+                <h3 className="text-[1.05rem] text-leaf-900">Instagram</h3>
+                <p className="mt-1 text-[0.9rem] font-semibold text-leaf-700">
                   {settings.instagram_handle}
                 </p>
-                <p className="mt-1 text-[0.8rem] text-cacao-500">
+                <p className="mt-1 text-[0.8rem] text-leaf-500">
                   Fornadas do dia, novidades e combos da semana.
                 </p>
               </div>
@@ -119,37 +123,37 @@ export default function Contact() {
               href={settings.google_maps}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-start gap-4 rounded-card border border-cream-300 bg-white p-6 shadow-soft transition hover:-translate-y-0.5 hover:shadow-lift"
+              className="flex items-start gap-4 rounded-card border border-leaf-100 bg-white p-6 shadow-soft transition-all duration-400 hover:-translate-y-1.5 hover:border-lime-300 hover:shadow-lift"
             >
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-sage-100 text-sage-600">
                 <MapPinIcon className="h-6 w-6" />
               </span>
               <div>
-                <h3 className="text-[1.05rem] text-cacao-900">Onde estamos</h3>
-                <p className="mt-1 text-[0.9rem] font-semibold text-cacao-700">
+                <h3 className="text-[1.05rem] text-leaf-900">Onde estamos</h3>
+                <p className="mt-1 text-[0.9rem] font-semibold text-leaf-700">
                   {settings.address_line} · {settings.address_city}/{settings.address_state}
                 </p>
-                <p className="mt-1 text-[0.8rem] text-cacao-500">
+                <p className="mt-1 text-[0.8rem] text-leaf-500">
                   {settings.reviews_summary}
                 </p>
               </div>
             </a>
 
             <div className="rounded-card border border-cream-300 bg-white p-6 shadow-soft">
-              <h3 className="text-[1.05rem] text-cacao-900">Horário de atendimento</h3>
-              <ul className="mt-3 space-y-1.5 text-[0.86rem] text-cacao-600">
+              <h3 className="text-[1.05rem] text-leaf-900">Horário de atendimento</h3>
+              <ul className="mt-3 space-y-1.5 text-[0.86rem] text-leaf-600">
                 {hours.map((line) => (
                   <li key={line}>{line}</li>
                 ))}
               </ul>
             </div>
-          </div>
+          </Stagger>
 
           {/* Formulário */}
-          <div>
-            <form onSubmit={submit} className="rounded-card border border-cream-300 bg-white p-7 shadow-soft">
-              <h2 className="text-[1.35rem] text-cacao-900">Envie sua mensagem</h2>
-              <p className="mt-2 text-[0.86rem] text-cacao-500">
+          <Reveal variant="right" delay={1}>
+            <form onSubmit={submit} className="rounded-card border border-leaf-100 bg-white p-7 shadow-soft">
+              <h2 className="text-[1.35rem] text-leaf-900">Envie sua mensagem</h2>
+              <p className="mt-2 text-[0.86rem] text-leaf-500">
                 Preencha e a gente abre o WhatsApp com tudo pronto — é só enviar.
               </p>
 
@@ -216,7 +220,7 @@ export default function Contact() {
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </>

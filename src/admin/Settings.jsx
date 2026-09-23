@@ -117,15 +117,15 @@ export default function Settings() {
         title="Configurações"
         description="Dados da empresa, contatos, regras de entrega e textos do site. As alterações valem imediatamente."
         actions={
-          <Button variant="caramel" onClick={save} loading={saving}>
+          <Button variant="lime" onClick={save} loading={saving}>
             <Save className="h-4 w-4" />
             Salvar alterações
           </Button>
         }
       />
 
-      <div className="mb-6 rounded-card border border-caramel-300 bg-caramel-100/70 px-5 py-4">
-        <p className="text-[0.85rem] leading-relaxed text-cacao-700">
+      <div className="mb-6 rounded-card border border-lime-300 bg-lime-100/70 px-5 py-4">
+        <p className="text-[0.85rem] leading-relaxed text-leaf-700">
           Confira se o número do WhatsApp está no formato internacional (
           <strong>55 + DDD + número</strong>) — é para ele que todos os pedidos do site são enviados.
           Hoje os pedidos chegam em{' '}
@@ -176,14 +176,14 @@ export default function Settings() {
                       />
                     )}
                     {field.hint && (
-                      <p className="mt-1 text-[0.72rem] text-cacao-400">{field.hint}</p>
+                      <p className="mt-1 text-[0.72rem] text-leaf-400">{field.hint}</p>
                     )}
                   </div>
                 ))}
               </div>
 
               {group.title === 'Vendas, entregas e envios' && (
-                <p className="mt-5 rounded-xl bg-cream-200/70 px-4 py-3 text-[0.8rem] text-cacao-600">
+                <p className="mt-5 rounded-xl bg-cream-200/70 px-4 py-3 text-[0.8rem] text-leaf-600">
                   Prévia: pedido mínimo {brl(Number(values.min_order) || 0)} · taxa de entrega{' '}
                   {brl(Number(values.delivery_fee) || 0)} · frete grátis a partir de{' '}
                   {brl(Number(values.free_delivery_from) || 0)}.
@@ -193,7 +193,7 @@ export default function Settings() {
           ))}
 
           <div className="flex justify-end">
-            <Button variant="caramel" size="lg" onClick={save} loading={saving}>
+            <Button variant="lime" size="lg" onClick={save} loading={saving}>
               <Save className="h-4 w-4" />
               Salvar alterações
             </Button>
@@ -245,7 +245,7 @@ export default function Settings() {
               Alterar senha
             </Button>
 
-            <p className="mt-4 text-[0.78rem] leading-relaxed text-cacao-400">
+            <p className="mt-4 text-[0.78rem] leading-relaxed text-leaf-400">
               A senha inicial de demonstração é <strong>healthy2024</strong>. Recomendamos trocá-la no
               primeiro acesso para manter o painel protegido.
             </p>

@@ -15,6 +15,16 @@ function ScrollToTop() {
   return null;
 }
 
+/** Faz a página entrar suavemente a cada troca de rota. */
+function PageTransition({ children }) {
+  const { pathname } = useLocation();
+  return (
+    <div key={pathname} className="animate-fade">
+      {children}
+    </div>
+  );
+}
+
 function WhatsAppFab() {
   const { settings } = useSite();
   const [expanded, setExpanded] = useState(false);
@@ -38,10 +48,10 @@ function WhatsAppFab() {
       rel="noopener noreferrer"
       onMouseEnter={() => setExpanded(true)}
       onMouseLeave={() => setExpanded(false)}
-      className="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 rounded-full bg-[#25D366] px-3.5 py-3.5 font-semibold text-[#062e14] shadow-lift transition-all hover:brightness-105 sm:bottom-7 sm:right-7"
+      className="group fixed bottom-5 right-5 z-40 flex animate-pulse-ring items-center gap-2.5 rounded-full bg-[#25D366] px-3.5 py-3.5 font-bold text-[#062e14] shadow-lift transition-all duration-300 hover:-translate-y-1 hover:brightness-105 sm:bottom-7 sm:right-7"
       aria-label="Falar no WhatsApp"
     >
-      <WhatsAppIcon className="h-6 w-6" />
+      <WhatsAppIcon className="h-6 w-6 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" />
       <span
         className={`overflow-hidden whitespace-nowrap text-[0.85rem] transition-all duration-300 ${
           expanded ? 'max-w-[12rem] pr-1 opacity-100' : 'max-w-0 opacity-0'
@@ -59,7 +69,9 @@ export default function SiteLayout() {
       <ScrollToTop />
       <Header />
       <main className="flex-1">
-        <Outlet />
+        <PageTransition>
+          <Outlet />
+        </PageTransition>
       </main>
       <Footer />
       <CartDrawer />

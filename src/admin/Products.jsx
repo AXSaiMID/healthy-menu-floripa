@@ -168,7 +168,7 @@ export default function Products() {
         title="Produtos"
         description="Atualize preços, fotos, descrições, estoque e destaques. As mudanças aparecem no site na hora."
         actions={
-          <Button variant="caramel" onClick={() => openEditor(null)}>
+          <Button variant="lime" onClick={() => openEditor(null)}>
             <Plus className="h-4 w-4" />
             Novo produto
           </Button>
@@ -209,23 +209,23 @@ export default function Products() {
                       <ProductImage src={product.image} alt="" className="h-full w-full object-cover" />
                     </span>
                     <span className="min-w-0">
-                      <span className="block truncate font-semibold text-cacao-900">{product.name}</span>
-                      <span className="block truncate text-[0.74rem] text-cacao-400">{product.unit}</span>
+                      <span className="block truncate font-semibold text-leaf-900">{product.name}</span>
+                      <span className="block truncate text-[0.74rem] text-leaf-400">{product.unit}</span>
                     </span>
                   </div>
                 </td>
-                <td className="px-4 py-3 text-[0.82rem] text-cacao-600">
+                <td className="px-4 py-3 text-[0.82rem] text-leaf-600">
                   {categoryLabel(product.category)}
                 </td>
-                <td className="px-4 py-3 text-[0.86rem] font-semibold text-cacao-900">
+                <td className="px-4 py-3 text-[0.86rem] font-semibold text-leaf-900">
                   {brl(product.finalPrice ?? product.price)}
                   {product.promoPrice ? (
-                    <span className="block text-[0.72rem] text-cacao-400 line-through">
+                    <span className="block text-[0.72rem] text-leaf-400 line-through">
                       {brl(product.price)}
                     </span>
                   ) : null}
                 </td>
-                <td className="px-4 py-3 text-[0.82rem] text-cacao-500">{brl(product.cost ?? 0)}</td>
+                <td className="px-4 py-3 text-[0.82rem] text-leaf-500">{brl(product.cost ?? 0)}</td>
                 <td className="px-4 py-3">
                   <span
                     className={cx(
@@ -233,14 +233,14 @@ export default function Products() {
                       marginPct(product) >= 60
                         ? 'bg-sage-100 text-sage-700'
                         : marginPct(product) >= 40
-                          ? 'bg-caramel-200 text-cacao-800'
+                          ? 'bg-lime-200 text-leaf-800'
                           : 'bg-red-100 text-red-700',
                     )}
                   >
                     {marginPct(product)}%
                   </span>
                 </td>
-                <td className="px-4 py-3 text-[0.82rem] text-cacao-600">
+                <td className="px-4 py-3 text-[0.82rem] text-leaf-600">
                   {product.stock === null || product.stock === undefined
                     ? 'Ilimitado'
                     : numberBR(product.stock)}
@@ -256,8 +256,8 @@ export default function Products() {
                     className={cx(
                       'grid h-8 w-8 place-items-center rounded-full border transition',
                       product.featured
-                        ? 'border-caramel-400 bg-caramel-200 text-caramel-600'
-                        : 'border-cream-300 text-cacao-300 hover:border-cacao-300',
+                        ? 'border-lime-400 bg-lime-200 text-lime-600'
+                        : 'border-cream-300 text-leaf-300 hover:border-leaf-300',
                     )}
                   >
                     <Star className={cx('h-4 w-4', product.featured && 'fill-current')} />
@@ -268,7 +268,7 @@ export default function Products() {
                     <button
                       type="button"
                       onClick={() => openEditor(product)}
-                      className="grid h-8 w-8 place-items-center rounded-full border border-cream-300 text-cacao-600 transition hover:border-cacao-900"
+                      className="grid h-8 w-8 place-items-center rounded-full border border-cream-300 text-leaf-600 transition hover:border-leaf-900"
                       aria-label={`Editar ${product.name}`}
                     >
                       <Pencil className="h-3.5 w-3.5" />
@@ -276,7 +276,7 @@ export default function Products() {
                     <button
                       type="button"
                       onClick={() => remove(product)}
-                      className="grid h-8 w-8 place-items-center rounded-full border border-cream-300 text-cacao-400 transition hover:border-red-400 hover:text-red-600"
+                      className="grid h-8 w-8 place-items-center rounded-full border border-cream-300 text-leaf-400 transition hover:border-red-400 hover:text-red-600"
                       aria-label={`Excluir ${product.name}`}
                     >
                       <Trash2 className="h-3.5 w-3.5" />
@@ -300,7 +300,7 @@ export default function Products() {
             <Button variant="outline" onClick={() => setEditing(null)}>
               Cancelar
             </Button>
-            <Button variant="caramel" onClick={save} loading={saving}>
+            <Button variant="lime" onClick={save} loading={saving}>
               {editing?.id ? 'Salvar alterações' : 'Criar produto'}
             </Button>
           </>
@@ -382,7 +382,7 @@ export default function Products() {
               value={form.cost}
               onChange={(event) => setForm({ ...form, cost: event.target.value })}
             />
-            <p className="mt-1 text-[0.72rem] text-cacao-400">
+            <p className="mt-1 text-[0.72rem] text-leaf-400">
               Usado para calcular o lucro real no financeiro.
             </p>
           </div>
@@ -442,7 +442,7 @@ export default function Products() {
               value={tagsInput}
               onChange={(event) => setTagsInput(event.target.value)}
             />
-            <p className="mt-1 text-[0.72rem] text-cacao-400">Separe por vírgulas. Máximo de 8 selos.</p>
+            <p className="mt-1 text-[0.72rem] text-leaf-400">Separe por vírgulas. Máximo de 8 selos.</p>
           </div>
 
           <div>
@@ -470,19 +470,19 @@ export default function Products() {
           </div>
 
           <div className="flex items-center gap-6 sm:col-span-2">
-            <label className="flex items-center gap-2.5 text-[0.88rem] text-cacao-700">
+            <label className="flex items-center gap-2.5 text-[0.88rem] text-leaf-700">
               <input
                 type="checkbox"
-                className="h-4 w-4 accent-[#c88a4b]"
+                className="h-4 w-4 accent-[#8fc84f]"
                 checked={form.active}
                 onChange={(event) => setForm({ ...form, active: event.target.checked })}
               />
               Visível no site
             </label>
-            <label className="flex items-center gap-2.5 text-[0.88rem] text-cacao-700">
+            <label className="flex items-center gap-2.5 text-[0.88rem] text-leaf-700">
               <input
                 type="checkbox"
-                className="h-4 w-4 accent-[#c88a4b]"
+                className="h-4 w-4 accent-[#8fc84f]"
                 checked={form.featured}
                 onChange={(event) => setForm({ ...form, featured: event.target.checked })}
               />
@@ -503,8 +503,8 @@ function FilterPill({ active, onClick, children }) {
       className={cx(
         'shrink-0 whitespace-nowrap rounded-full border px-3.5 py-1.5 text-[0.8rem] font-semibold transition',
         active
-          ? 'border-cacao-900 bg-cacao-900 text-cream-100'
-          : 'border-cream-300 bg-white text-cacao-600 hover:border-cacao-300',
+          ? 'border-leaf-900 bg-leaf-900 text-cream-100'
+          : 'border-cream-300 bg-white text-leaf-600 hover:border-leaf-300',
       )}
     >
       {children}

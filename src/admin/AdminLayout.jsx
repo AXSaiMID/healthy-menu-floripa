@@ -14,6 +14,7 @@ import {
   X,
 } from 'lucide-react';
 
+import { LogoMark } from '../components/Logo.jsx';
 import { useAuth } from './AdminApp.jsx';
 import { adminApi } from '../lib/api.js';
 import { cx } from '../lib/format.js';
@@ -50,20 +51,18 @@ export default function AdminLayout() {
       {/* Sidebar */}
       <aside
         className={cx(
-          'fixed inset-y-0 left-0 z-50 flex w-72 flex-col bg-cacao-900 p-5 transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:translate-x-0',
+          'fixed inset-y-0 left-0 z-50 flex w-72 flex-col bg-leaf-900 p-5 transition-transform duration-300 lg:sticky lg:top-0 lg:h-screen lg:translate-x-0',
           open ? 'translate-x-0' : '-translate-x-full',
         )}
       >
         <div className="flex items-center justify-between">
-          <Link to="/admin/dashboard" className="flex items-center gap-2.5">
-            <span className="grid h-10 w-10 place-items-center rounded-2xl bg-cream-100">
-              <span className="font-display text-lg font-bold text-cacao-900">H</span>
-            </span>
+          <Link to="/admin/dashboard" className="group flex items-center gap-2.5">
+            <LogoMark className="h-10 w-10" tone="color" animated />
             <span className="flex flex-col leading-none">
-              <span className="font-display text-[1.02rem] font-semibold text-cream-100">
+              <span className="font-display text-[1.02rem] font-semibold text-cream-50">
                 Healthy Menu
               </span>
-              <span className="text-[0.6rem] font-bold uppercase tracking-[0.28em] text-caramel-300">
+              <span className="text-[0.6rem] font-extrabold uppercase tracking-[0.28em] text-lime-300">
                 Painel
               </span>
             </span>
@@ -96,7 +95,7 @@ export default function AdminLayout() {
               <item.icon className="h-[1.05rem] w-[1.05rem] shrink-0" />
               <span className="flex-1">{item.label}</span>
               {item.badge === 'pending' && pending > 0 && (
-                <span className="grid h-5 min-w-5 place-items-center rounded-full bg-caramel-500 px-1.5 text-[0.65rem] font-bold text-cacao-950">
+                <span className="grid h-5 min-w-5 place-items-center rounded-full bg-lime-500 px-1.5 text-[0.65rem] font-bold text-leaf-950">
                   {pending}
                 </span>
               )}
@@ -106,7 +105,7 @@ export default function AdminLayout() {
 
         <div className="mt-6 space-y-3 border-t border-cream-100/10 pt-5">
           <div className="rounded-2xl bg-cream-100/5 p-3.5">
-            <p className="text-[0.68rem] font-bold uppercase tracking-wider text-caramel-300">
+            <p className="text-[0.68rem] font-bold uppercase tracking-wider text-lime-300">
               Conectado como
             </p>
             <p className="mt-1 truncate text-[0.85rem] font-semibold text-cream-100">{admin?.name}</p>
@@ -134,7 +133,7 @@ export default function AdminLayout() {
 
       {open && (
         <div
-          className="fixed inset-0 z-40 bg-cacao-950/50 lg:hidden"
+          className="fixed inset-0 z-40 bg-leaf-950/50 lg:hidden"
           onClick={() => setOpen(false)}
           aria-hidden="true"
         />
@@ -146,13 +145,13 @@ export default function AdminLayout() {
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="grid h-10 w-10 place-items-center rounded-full border border-cream-300 bg-white text-cacao-800"
+            className="grid h-10 w-10 place-items-center rounded-full border border-leaf-200 bg-white text-leaf-800 active:scale-95"
             aria-label="Abrir menu"
           >
             <MenuIcon className="h-4.5 w-4.5" />
           </button>
-          <span className="flex items-center gap-2 font-display text-[1.05rem] font-semibold text-cacao-900">
-            <BarChart3 className="h-4 w-4 text-caramel-600" />
+          <span className="flex items-center gap-2 font-display text-[1.05rem] font-semibold text-leaf-900">
+            <BarChart3 className="h-4 w-4 text-lime-600" />
             Painel Healthy Menu
           </span>
         </header>

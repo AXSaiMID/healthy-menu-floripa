@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import { Button, Container, EmptyState, SectionHeading, WhatsAppIcon } from '../components/ui.jsx';
+import { Reveal, Stagger } from '../components/motion.jsx';
 import ProductImage from '../components/ProductImage.jsx';
 import { useCart } from '../lib/cart.jsx';
 import { useSite } from '../lib/site.jsx';
@@ -20,11 +21,13 @@ export default function CartPage() {
 
   return (
     <Container className="py-14">
-      <SectionHeading
-        eyebrow="Seu pedido"
-        title="Carrinho"
-        description="Confira os itens escolhidos e continue para informar seus dados. No fim, o pedido é enviado direto para o nosso WhatsApp."
-      />
+      <Reveal>
+        <SectionHeading
+          eyebrow="Seu pedido"
+          title="Carrinho"
+          description="Confira os itens escolhidos e continue para informar seus dados. No fim, o pedido é enviado direto para o nosso WhatsApp."
+        />
+      </Reveal>
 
       {cart.items.length === 0 ? (
         <div className="mt-10">
@@ -33,7 +36,7 @@ export default function CartPage() {
             title="Seu carrinho está vazio"
             description="Que tal começar pelos nossos brownies mais pedidos? O clássico 50% cacau é um ótimo ponto de partida."
             action={
-              <Button as={Link} to="/cardapio" variant="caramel" size="lg">
+              <Button as={Link} to="/cardapio" variant="lime" size="lg">
                 Ver o cardápio
               </Button>
             }
@@ -41,11 +44,11 @@ export default function CartPage() {
         </div>
       ) : (
         <div className="mt-10 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
-          <ul className="space-y-4">
+          <Stagger as="ul" className="space-y-4">
             {cart.items.map((item) => (
               <li
                 key={item.productId}
-                className="flex flex-col gap-4 rounded-card border border-cream-300 bg-white p-4 shadow-soft sm:flex-row sm:items-center"
+                className="flex flex-col gap-4 rounded-card border border-leaf-100 bg-white p-4 shadow-soft transition-all duration-400 hover:-translate-y-1 hover:border-lime-300 hover:shadow-lift sm:flex-row sm:items-center"
               >
                 <Link
                   to={`/produto/${item.slug}`}
@@ -57,12 +60,12 @@ export default function CartPage() {
                 <div className="flex-1">
                   <Link
                     to={`/produto/${item.slug}`}
-                    className="text-[1rem] font-semibold text-cacao-900 hover:text-caramel-600"
+                    className="text-[1rem] font-semibold text-leaf-900 hover:text-lime-600"
                   >
                     {item.name}
                   </Link>
-                  {item.unit && <p className="mt-1 text-[0.78rem] text-cacao-400">{item.unit}</p>}
-                  <p className="mt-1 text-[0.82rem] text-cacao-500">
+                  {item.unit && <p className="mt-1 text-[0.78rem] text-leaf-400">{item.unit}</p>}
+                  <p className="mt-1 text-[0.82rem] text-leaf-500">
                     {brl(item.price)} a unidade
                   </p>
                 </div>
@@ -72,7 +75,7 @@ export default function CartPage() {
                     <button
                       type="button"
                       onClick={() => cart.setQty(item.productId, item.qty - 1)}
-                      className="grid h-8 w-8 place-items-center rounded-full text-cacao-700 transition hover:bg-cream-200"
+                      className="grid h-8 w-8 place-items-center rounded-full text-leaf-700 transition hover:bg-cream-200"
                       aria-label="Diminuir"
                     >
                       −
@@ -81,18 +84,18 @@ export default function CartPage() {
                     <button
                       type="button"
                       onClick={() => cart.setQty(item.productId, item.qty + 1)}
-                      className="grid h-8 w-8 place-items-center rounded-full text-cacao-700 transition hover:bg-cream-200"
+                      className="grid h-8 w-8 place-items-center rounded-full text-leaf-700 transition hover:bg-cream-200"
                       aria-label="Aumentar"
                     >
                       +
                     </button>
                   </div>
                   <div className="text-right">
-                    <p className="font-display text-lg text-cacao-900">{brl(item.price * item.qty)}</p>
+                    <p className="font-display text-lg text-leaf-900">{brl(item.price * item.qty)}</p>
                     <button
                       type="button"
                       onClick={() => cart.remove(item.productId)}
-                      className="text-[0.72rem] text-cacao-400 transition hover:text-red-600"
+                      className="text-[0.72rem] text-leaf-400 transition hover:text-red-600"
                     >
                       Remover
                     </button>
@@ -100,22 +103,22 @@ export default function CartPage() {
                 </div>
               </li>
             ))}
-          </ul>
+          </Stagger>
 
-          <aside className="lg:sticky lg:top-24 lg:self-start">
-            <div className="rounded-card border border-cream-300 bg-white p-6 shadow-soft">
-              <h2 className="text-[1.1rem] text-cacao-900">Resumo</h2>
+          <Reveal variant="right" className="lg:sticky lg:top-24 lg:self-start">
+            <div className="rounded-card border border-leaf-100 bg-white p-6 shadow-soft">
+              <h2 className="text-[1.1rem] text-leaf-900">Resumo</h2>
 
               <dl className="mt-5 space-y-2 text-[0.9rem]">
-                <div className="flex justify-between text-cacao-600">
+                <div className="flex justify-between text-leaf-600">
                   <dt>Itens</dt>
                   <dd>{cart.count}</dd>
                 </div>
-                <div className="flex justify-between text-cacao-600">
+                <div className="flex justify-between text-leaf-600">
                   <dt>Subtotal</dt>
                   <dd>{brl(cart.subtotal)}</dd>
                 </div>
-                <div className="flex justify-between border-t border-cream-200 pt-3 text-base font-bold text-cacao-900">
+                <div className="flex justify-between border-t border-cream-200 pt-3 text-base font-bold text-leaf-900">
                   <dt>Total</dt>
                   <dd>{brl(cart.subtotal)}</dd>
                 </div>
@@ -127,7 +130,7 @@ export default function CartPage() {
                 </p>
               )}
 
-              <Button variant="caramel" size="lg" className="mt-6 w-full" onClick={cart.openCheckout}>
+              <Button variant="lime" size="lg" className="mt-6 w-full" onClick={cart.openCheckout}>
                 Informar dados e finalizar
               </Button>
 
@@ -135,13 +138,13 @@ export default function CartPage() {
                 Continuar comprando
               </Button>
 
-              <p className="mt-5 flex items-start gap-2 text-[0.74rem] leading-relaxed text-cacao-500">
+              <p className="mt-5 flex items-start gap-2 text-[0.74rem] leading-relaxed text-leaf-500">
                 <WhatsAppIcon className="mt-0.5 h-4 w-4 shrink-0 text-[#25D366]" />
                 Ao finalizar, seu pedido é registrado no nosso sistema e enviado para o WhatsApp{' '}
                 {settings.whatsapp_display} com todos os dados do comprador.
               </p>
             </div>
-          </aside>
+          </Reveal>
         </div>
       )}
     </Container>

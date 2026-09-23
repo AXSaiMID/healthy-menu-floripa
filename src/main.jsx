@@ -4,6 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import '@fontsource-variable/fraunces';
 import '@fontsource-variable/plus-jakarta-sans';
+import '@fontsource-variable/caveat';
 import './index.css';
 
 import App from './App.jsx';

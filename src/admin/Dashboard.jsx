@@ -64,8 +64,8 @@ export default function Dashboard() {
                 className={cx(
                   'rounded-full border px-3.5 py-1.5 text-[0.8rem] font-semibold transition',
                   !custom && days === option.id
-                    ? 'border-cacao-900 bg-cacao-900 text-cream-100'
-                    : 'border-cream-300 bg-white text-cacao-600 hover:border-cacao-300',
+                    ? 'border-leaf-900 bg-leaf-900 text-cream-100'
+                    : 'border-cream-300 bg-white text-leaf-600 hover:border-leaf-300',
                 )}
               >
                 {option.label}
@@ -96,9 +96,9 @@ export default function Dashboard() {
             onChange={(event) => setCustom({ from: range.from, to: event.target.value })}
           />
         </div>
-        <p className="text-[0.8rem] text-cacao-500">
-          Período analisado: <strong className="text-cacao-800">{formatDate(range.from)}</strong> a{' '}
-          <strong className="text-cacao-800">{formatDate(range.to)}</strong>
+        <p className="text-[0.8rem] text-leaf-500">
+          Período analisado: <strong className="text-leaf-800">{formatDate(range.from)}</strong> a{' '}
+          <strong className="text-leaf-800">{formatDate(range.to)}</strong>
         </p>
       </div>
 
@@ -149,7 +149,7 @@ export default function Dashboard() {
 
             <Panel title="Produtos mais vendidos" description="Ranking por quantidade no período.">
               {data.topProducts.length === 0 ? (
-                <p className="py-6 text-center text-[0.85rem] text-cacao-400">
+                <p className="py-6 text-center text-[0.85rem] text-leaf-400">
                   Nenhuma venda registrada ainda.
                 </p>
               ) : (
@@ -171,7 +171,7 @@ export default function Dashboard() {
           <div className="mt-6 grid gap-6 lg:grid-cols-3">
             <Panel title="Por categoria">
               {data.byCategory.length === 0 ? (
-                <p className="py-4 text-[0.85rem] text-cacao-400">Sem dados.</p>
+                <p className="py-4 text-[0.85rem] text-leaf-400">Sem dados.</p>
               ) : (
                 <div className="space-y-4">
                   {data.byCategory.map((row) => (
@@ -189,7 +189,7 @@ export default function Dashboard() {
 
             <Panel title="Formas de pagamento">
               {data.byPayment.length === 0 ? (
-                <p className="py-4 text-[0.85rem] text-cacao-400">Sem dados.</p>
+                <p className="py-4 text-[0.85rem] text-leaf-400">Sem dados.</p>
               ) : (
                 <div className="space-y-4">
                   {data.byPayment.map((row) => (
@@ -210,13 +210,13 @@ export default function Dashboard() {
                 {Object.entries(data.statusCounts).map(([status, count]) => (
                   <div key={status} className="flex items-center justify-between">
                     <StatusPill status={status} />
-                    <span className="text-[0.9rem] font-semibold text-cacao-900">{count}</span>
+                    <span className="text-[0.9rem] font-semibold text-leaf-900">{count}</span>
                   </div>
                 ))}
               </div>
               <Link
                 to="/admin/pedidos"
-                className="mt-5 inline-flex items-center gap-1.5 text-[0.82rem] font-semibold text-caramel-600 hover:text-caramel-500"
+                className="mt-5 inline-flex items-center gap-1.5 text-[0.82rem] font-semibold text-lime-600 hover:text-lime-500"
               >
                 Gerenciar pedidos
                 <ArrowUpRight className="h-3.5 w-3.5" />
@@ -232,7 +232,7 @@ export default function Dashboard() {
             actions={
               <Link
                 to="/admin/pedidos"
-                className="text-[0.82rem] font-semibold text-caramel-600 hover:text-caramel-500"
+                className="text-[0.82rem] font-semibold text-lime-600 hover:text-lime-500"
               >
                 Ver todos
               </Link>
@@ -240,8 +240,8 @@ export default function Dashboard() {
           >
             {data.recentOrders.length === 0 ? (
               <div className="px-5 py-10 text-center">
-                <p className="text-[0.9rem] text-cacao-500">Ainda não há pedidos.</p>
-                <p className="mt-1 text-[0.8rem] text-cacao-400">
+                <p className="text-[0.9rem] text-leaf-500">Ainda não há pedidos.</p>
+                <p className="mt-1 text-[0.8rem] text-leaf-400">
                   Quando alguém finalizar o carrinho no site, o pedido aparece aqui automaticamente.
                 </p>
               </div>
@@ -249,20 +249,20 @@ export default function Dashboard() {
               <Table head={['Pedido', 'Cliente', 'Data', 'Pagamento', 'Total', 'Status']}>
                 {data.recentOrders.map((order) => (
                   <tr key={order.id} className="transition hover:bg-cream-200/40">
-                    <td className="px-4 py-3 font-semibold text-cacao-900">{order.code}</td>
-                    <td className="px-4 py-3 text-[0.86rem] text-cacao-700">
+                    <td className="px-4 py-3 font-semibold text-leaf-900">{order.code}</td>
+                    <td className="px-4 py-3 text-[0.86rem] text-leaf-700">
                       {order.customerName}
-                      <span className="block text-[0.74rem] text-cacao-400">
+                      <span className="block text-[0.74rem] text-leaf-400">
                         {order.deliveryType === 'pickup' ? 'Retirada' : 'Entrega'}
                       </span>
                     </td>
-                    <td className="px-4 py-3 text-[0.82rem] text-cacao-500">
+                    <td className="px-4 py-3 text-[0.82rem] text-leaf-500">
                       {formatDate(order.createdAt, { withTime: true })}
                     </td>
-                    <td className="px-4 py-3 text-[0.82rem] text-cacao-600">
+                    <td className="px-4 py-3 text-[0.82rem] text-leaf-600">
                       {PAYMENT_LABEL[order.paymentMethod] ?? order.paymentMethod}
                     </td>
-                    <td className="px-4 py-3 font-semibold text-cacao-900">{brl(order.total)}</td>
+                    <td className="px-4 py-3 font-semibold text-leaf-900">{brl(order.total)}</td>
                     <td className="px-4 py-3">
                       <StatusPill status={order.status} />
                     </td>

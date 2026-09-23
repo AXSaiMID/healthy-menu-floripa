@@ -123,7 +123,7 @@ export default function Orders() {
           <div>
             <label className="label" htmlFor="o-search">Buscar</label>
             <div className="relative">
-              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-cacao-300" />
+              <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-leaf-300" />
               <input
                 id="o-search"
                 className="field pl-10"
@@ -169,12 +169,12 @@ export default function Orders() {
             />
           </div>
         </div>
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-cream-200 px-5 py-3.5 text-[0.82rem] text-cacao-500">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-cream-200 px-5 py-3.5 text-[0.82rem] text-leaf-500">
           <span>
-            <strong className="text-cacao-900">{orders.length}</strong> pedidos listados
+            <strong className="text-leaf-900">{orders.length}</strong> pedidos listados
           </span>
           <span>
-            Receita: <strong className="text-cacao-900">{brl(totals.revenue)}</strong>
+            Receita: <strong className="text-leaf-900">{brl(totals.revenue)}</strong>
           </span>
           <span>
             Lucro estimado: <strong className="text-sage-600">{brl(totals.profit)}</strong>
@@ -182,7 +182,7 @@ export default function Orders() {
           <button
             type="button"
             onClick={() => setFilters({ status: '', search: '', from: '', to: '' })}
-            className="ml-auto text-[0.78rem] font-semibold text-caramel-600 hover:text-caramel-500"
+            className="ml-auto text-[0.78rem] font-semibold text-lime-600 hover:text-lime-500"
           >
             Limpar filtros
           </button>
@@ -198,8 +198,8 @@ export default function Orders() {
           </div>
         ) : orders.length === 0 ? (
           <div className="px-5 py-14 text-center">
-            <p className="text-[1rem] text-cacao-800">Nenhum pedido encontrado</p>
-            <p className="mt-2 text-[0.85rem] text-cacao-500">
+            <p className="text-[1rem] text-leaf-800">Nenhum pedido encontrado</p>
+            <p className="mt-2 text-[0.85rem] text-leaf-500">
               Ajuste os filtros ou aguarde novos pedidos chegarem pelo site.
             </p>
           </div>
@@ -211,30 +211,30 @@ export default function Orders() {
                   <button
                     type="button"
                     onClick={() => openOrder(order)}
-                    className="font-semibold text-cacao-900 hover:text-caramel-600"
+                    className="font-semibold text-leaf-900 hover:text-lime-600"
                   >
                     {order.code}
                   </button>
                 </td>
-                <td className="px-4 py-3 text-[0.86rem] text-cacao-700">
+                <td className="px-4 py-3 text-[0.86rem] text-leaf-700">
                   {order.customerName}
-                  <span className="block text-[0.74rem] text-cacao-400">
+                  <span className="block text-[0.74rem] text-leaf-400">
                     {maskPhone(order.customerPhone)}
                   </span>
                 </td>
-                <td className="px-4 py-3 text-[0.82rem] text-cacao-600">
+                <td className="px-4 py-3 text-[0.82rem] text-leaf-600">
                   {order.deliveryType === 'pickup' ? 'Retirada' : 'Entrega'}
                   {order.deliveryType === 'delivery' && order.address.district && (
-                    <span className="block text-[0.74rem] text-cacao-400">{order.address.district}</span>
+                    <span className="block text-[0.74rem] text-leaf-400">{order.address.district}</span>
                   )}
                 </td>
-                <td className="px-4 py-3 text-[0.82rem] text-cacao-500">
+                <td className="px-4 py-3 text-[0.82rem] text-leaf-500">
                   {formatDate(order.createdAt, { withTime: true })}
                 </td>
-                <td className="px-4 py-3 text-[0.82rem] text-cacao-600">
+                <td className="px-4 py-3 text-[0.82rem] text-leaf-600">
                   {order.items.reduce((sum, item) => sum + item.qty, 0)} un
                 </td>
-                <td className="px-4 py-3 font-semibold text-cacao-900">{brl(order.total)}</td>
+                <td className="px-4 py-3 font-semibold text-leaf-900">{brl(order.total)}</td>
                 <td className="px-4 py-3">
                   <select
                     value={order.status}
@@ -247,7 +247,7 @@ export default function Orders() {
                         toast.error(error.message);
                       }
                     }}
-                    className="rounded-full border border-cream-300 bg-white px-2.5 py-1 text-[0.74rem] font-semibold text-cacao-700"
+                    className="rounded-full border border-cream-300 bg-white px-2.5 py-1 text-[0.74rem] font-semibold text-leaf-700"
                   >
                     {STATUS_OPTIONS.slice(1).map((option) => (
                       <option key={option.id} value={option.id}>
@@ -260,7 +260,7 @@ export default function Orders() {
                   <button
                     type="button"
                     onClick={() => openOrder(order)}
-                    className="text-[0.78rem] font-semibold text-caramel-600 hover:text-caramel-500"
+                    className="text-[0.78rem] font-semibold text-lime-600 hover:text-lime-500"
                   >
                     Detalhes
                   </button>
@@ -289,7 +289,7 @@ export default function Orders() {
               <Button variant="outline" onClick={() => setSelected(null)}>
                 Fechar
               </Button>
-              <Button variant="caramel" onClick={save} loading={saving}>
+              <Button variant="lime" onClick={save} loading={saving}>
                 Salvar alterações
               </Button>
             </>
@@ -312,29 +312,29 @@ export default function Orders() {
 
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-2xl border border-cream-300 bg-white p-4">
-                <h3 className="text-[0.72rem] font-bold uppercase tracking-wider text-caramel-600">
+                <h3 className="text-[0.72rem] font-bold uppercase tracking-wider text-lime-600">
                   Cliente
                 </h3>
-                <p className="mt-2 text-[0.92rem] font-semibold text-cacao-900">{selected.customerName}</p>
-                <p className="text-[0.84rem] text-cacao-600">{maskPhone(selected.customerPhone)}</p>
+                <p className="mt-2 text-[0.92rem] font-semibold text-leaf-900">{selected.customerName}</p>
+                <p className="text-[0.84rem] text-leaf-600">{maskPhone(selected.customerPhone)}</p>
                 {selected.customerEmail && (
-                  <p className="text-[0.84rem] text-cacao-600">{selected.customerEmail}</p>
+                  <p className="text-[0.84rem] text-leaf-600">{selected.customerEmail}</p>
                 )}
                 {selected.customerCpf && (
-                  <p className="text-[0.84rem] text-cacao-600">CPF: {selected.customerCpf}</p>
+                  <p className="text-[0.84rem] text-leaf-600">CPF: {selected.customerCpf}</p>
                 )}
               </div>
 
               <div className="rounded-2xl border border-cream-300 bg-white p-4">
-                <h3 className="text-[0.72rem] font-bold uppercase tracking-wider text-caramel-600">
+                <h3 className="text-[0.72rem] font-bold uppercase tracking-wider text-lime-600">
                   {selected.deliveryType === 'pickup' ? 'Retirada' : 'Endereço de entrega'}
                 </h3>
                 {selected.deliveryType === 'pickup' ? (
-                  <p className="mt-2 text-[0.86rem] text-cacao-600">
+                  <p className="mt-2 text-[0.86rem] text-leaf-600">
                     Cliente retira no Rio Vermelho (São João).
                   </p>
                 ) : (
-                  <p className="mt-2 text-[0.86rem] leading-relaxed text-cacao-600">
+                  <p className="mt-2 text-[0.86rem] leading-relaxed text-leaf-600">
                     {selected.address.address}, {selected.address.addressNumber}
                     {selected.address.complement ? ` — ${selected.address.complement}` : ''}
                     <br />
@@ -349,7 +349,7 @@ export default function Orders() {
             <div className="overflow-hidden rounded-2xl border border-cream-300 bg-white">
               <table className="w-full text-left text-[0.86rem]">
                 <thead>
-                  <tr className="border-b border-cream-200 text-[0.7rem] uppercase tracking-wider text-caramel-600">
+                  <tr className="border-b border-cream-200 text-[0.7rem] uppercase tracking-wider text-lime-600">
                     <th className="px-4 py-2.5">Item</th>
                     <th className="px-4 py-2.5 text-center">Qtd</th>
                     <th className="px-4 py-2.5 text-right">Unitário</th>
@@ -361,15 +361,15 @@ export default function Orders() {
                   {selected.items.map((item) => (
                     <tr key={item.id}>
                       <td className="px-4 py-2.5">
-                        <span className="font-medium text-cacao-800">{item.name}</span>
+                        <span className="font-medium text-leaf-800">{item.name}</span>
                         {item.unit && (
-                          <span className="block text-[0.74rem] text-cacao-400">{item.unit}</span>
+                          <span className="block text-[0.74rem] text-leaf-400">{item.unit}</span>
                         )}
                       </td>
                       <td className="px-4 py-2.5 text-center">{item.qty}</td>
                       <td className="px-4 py-2.5 text-right">{brl(item.unitPrice)}</td>
                       <td className="px-4 py-2.5 text-right font-semibold">{brl(item.total)}</td>
-                      <td className="px-4 py-2.5 text-right text-cacao-400">{brl(item.unitCost * item.qty)}</td>
+                      <td className="px-4 py-2.5 text-right text-leaf-400">{brl(item.unitCost * item.qty)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -451,15 +451,15 @@ export default function Orders() {
 
                 <dl className="rounded-2xl bg-cream-200/70 p-4 text-[0.86rem]">
                   <div className="flex justify-between py-1">
-                    <dt className="text-cacao-500">Subtotal</dt>
+                    <dt className="text-leaf-500">Subtotal</dt>
                     <dd>{brl(selected.subtotal)}</dd>
                   </div>
                   <div className="flex justify-between py-1">
-                    <dt className="text-cacao-500">Frete</dt>
+                    <dt className="text-leaf-500">Frete</dt>
                     <dd>{brl(Number(draft.deliveryFee) || 0)}</dd>
                   </div>
                   <div className="flex justify-between py-1">
-                    <dt className="text-cacao-500">Desconto</dt>
+                    <dt className="text-leaf-500">Desconto</dt>
                     <dd>- {brl(Number(draft.discount) || 0)}</dd>
                   </div>
                   <div className="mt-1 flex justify-between border-t border-cream-300 pt-2 text-base font-bold">
@@ -474,11 +474,11 @@ export default function Orders() {
                     </dd>
                   </div>
                   <div className="mt-2 flex justify-between text-[0.82rem]">
-                    <dt className="text-cacao-500">Custo dos produtos</dt>
-                    <dd className="text-cacao-600">{brl(selected.cost)}</dd>
+                    <dt className="text-leaf-500">Custo dos produtos</dt>
+                    <dd className="text-leaf-600">{brl(selected.cost)}</dd>
                   </div>
                   <div className="flex justify-between text-[0.82rem] font-semibold">
-                    <dt className="text-cacao-600">Lucro bruto</dt>
+                    <dt className="text-leaf-600">Lucro bruto</dt>
                     <dd
                       className={cx(
                         Math.max(

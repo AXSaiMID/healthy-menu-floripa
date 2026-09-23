@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard.jsx';
 import ProductImage from '../components/ProductImage.jsx';
 import { Badge, Button, Container, WhatsAppIcon } from '../components/ui.jsx';
+import { Reveal, Stagger } from '../components/motion.jsx';
 import { useSite } from '../lib/site.jsx';
 import { useCart } from '../lib/cart.jsx';
 import { useToast } from '../lib/toast.jsx';
@@ -45,7 +46,7 @@ export default function ProductDetail() {
     return (
       <Container className="py-24 text-center">
         <h1 className="text-3xl">Produto não encontrado</h1>
-        <p className="mt-3 text-cacao-500">
+        <p className="mt-3 text-leaf-500">
           Talvez ele tenha saído do cardápio. Veja as novidades na nossa vitrine.
         </p>
         <Button as={Link} to="/cardapio" className="mt-7">
@@ -76,29 +77,29 @@ export default function ProductDetail() {
   return (
     <>
       <Container className="py-8">
-        <nav className="flex items-center gap-2 text-[0.78rem] text-cacao-400">
-          <Link to="/" className="hover:text-cacao-700">Início</Link>
+        <nav className="flex items-center gap-2 text-[0.78rem] text-leaf-400">
+          <Link to="/" className="hover:text-leaf-700">Início</Link>
           <span>/</span>
-          <Link to="/cardapio" className="hover:text-cacao-700">Cardápio</Link>
+          <Link to="/cardapio" className="hover:text-leaf-700">Cardápio</Link>
           <span>/</span>
-          <Link to={`/cardapio?categoria=${product.category}`} className="hover:text-cacao-700">
+          <Link to={`/cardapio?categoria=${product.category}`} className="hover:text-leaf-700">
             {categoryLabel(product.category)}
           </Link>
           <span>/</span>
-          <span className="truncate text-cacao-700">{product.name}</span>
+          <span className="truncate text-leaf-700">{product.name}</span>
         </nav>
       </Container>
 
       <Container className="pb-16">
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
           {/* Imagens */}
-          <div>
+          <Reveal variant="left">
             <div className="overflow-hidden rounded-[1.75rem] border border-cream-300 bg-white shadow-soft">
               <div className="aspect-square w-full bg-cream-200">
                 <ProductImage
                   src={images[activeImage]}
                   alt={product.name}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full object-cover transition-transform duration-[1.1s] hover:scale-105"
                 />
               </div>
             </div>
@@ -112,7 +113,7 @@ export default function ProductDetail() {
                     onClick={() => setActiveImage(index)}
                     className={cx(
                       'h-20 w-20 overflow-hidden rounded-xl border-2 transition',
-                      activeImage === index ? 'border-caramel-500' : 'border-transparent opacity-70 hover:opacity-100',
+                      activeImage === index ? 'border-lime-500' : 'border-transparent opacity-70 hover:opacity-100',
                     )}
                   >
                     <ProductImage src={image} alt="" className="h-full w-full object-cover" />
@@ -120,30 +121,30 @@ export default function ProductDetail() {
                 ))}
               </div>
             )}
-          </div>
+          </Reveal>
 
           {/* Informações */}
-          <div className="lg:sticky lg:top-24 lg:self-start">
+          <Reveal variant="right" delay={1} className="lg:sticky lg:top-24 lg:self-start">
             <div className="flex flex-wrap items-center gap-2">
               <Badge tone="sage">{categoryLabel(product.category)}</Badge>
               {product.shippingScope === 'nacional' ? (
-                <Badge tone="caramel">Envio para todo o Brasil</Badge>
+                <Badge tone="lime">Envio para todo o Brasil</Badge>
               ) : (
-                <Badge tone="caramel">Entrega no Norte da Ilha</Badge>
+                <Badge tone="lime">Entrega no Norte da Ilha</Badge>
               )}
               {hasPromo && <Badge tone="dark">Promoção</Badge>}
             </div>
 
-            <h1 className="mt-4 text-3xl leading-tight text-cacao-900 sm:text-4xl">{product.name}</h1>
-            <p className="mt-4 text-[1rem] leading-relaxed text-cacao-600">{product.shortDesc}</p>
+            <h1 className="mt-4 text-3xl leading-tight text-leaf-900 sm:text-4xl">{product.name}</h1>
+            <p className="mt-4 text-[1rem] leading-relaxed text-leaf-600">{product.shortDesc}</p>
 
             <div className="mt-6 flex flex-wrap items-end gap-3">
               {hasPromo && (
-                <span className="text-[0.9rem] text-cacao-400 line-through">{brl(product.price)}</span>
+                <span className="text-[0.9rem] text-leaf-400 line-through">{brl(product.price)}</span>
               )}
-              <span className="font-display text-4xl font-semibold text-cacao-900">{brl(price)}</span>
+              <span className="font-display text-4xl font-semibold text-leaf-900">{brl(price)}</span>
               {product.unit && (
-                <span className="pb-1 text-[0.82rem] text-cacao-400">/ {product.unit}</span>
+                <span className="pb-1 text-[0.82rem] text-leaf-400">/ {product.unit}</span>
               )}
             </div>
 
@@ -160,12 +161,12 @@ export default function ProductDetail() {
             {/* Quantidade + ações */}
             <div className="mt-8 rounded-2xl border border-cream-300 bg-white p-5 shadow-soft">
               <div className="flex items-center justify-between gap-4">
-                <span className="text-[0.82rem] font-semibold text-cacao-600">Quantidade</span>
+                <span className="text-[0.82rem] font-semibold text-leaf-600">Quantidade</span>
                 <div className="flex items-center gap-1 rounded-full border border-cream-300 p-1">
                   <button
                     type="button"
                     onClick={() => setQty((q) => Math.max(1, q - 1))}
-                    className="grid h-8 w-8 place-items-center rounded-full text-cacao-700 transition hover:bg-cream-200"
+                    className="grid h-8 w-8 place-items-center rounded-full text-leaf-700 transition hover:bg-cream-200"
                     aria-label="Diminuir"
                   >
                     −
@@ -174,7 +175,7 @@ export default function ProductDetail() {
                   <button
                     type="button"
                     onClick={() => setQty((q) => Math.min(99, q + 1))}
-                    className="grid h-8 w-8 place-items-center rounded-full text-cacao-700 transition hover:bg-cream-200"
+                    className="grid h-8 w-8 place-items-center rounded-full text-leaf-700 transition hover:bg-cream-200"
                     aria-label="Aumentar"
                   >
                     +
@@ -188,7 +189,7 @@ export default function ProductDetail() {
                 </Button>
                 <div className="grid grid-cols-2 gap-3">
                   <Button
-                    variant="caramel"
+                    variant="lime"
                     onClick={() => {
                       addToCart();
                       cart.openCheckout();
@@ -210,7 +211,7 @@ export default function ProductDetail() {
                 </div>
               </div>
 
-              <p className="mt-4 text-center text-[0.74rem] leading-relaxed text-cacao-400">
+              <p className="mt-4 text-center text-[0.74rem] leading-relaxed text-leaf-400">
                 {product.shippingScope === 'nacional'
                   ? 'Enviamos para todo o Brasil. O frete é calculado na finalização pelo WhatsApp.'
                   : `Entrega rápida no Norte da Ilha. Frete grátis acima de ${brl(
@@ -221,8 +222,8 @@ export default function ProductDetail() {
 
             {/* Descrição completa */}
             <div className="mt-8 border-t border-cream-300 pt-7">
-              <h2 className="text-[1.15rem] text-cacao-900">Sobre este produto</h2>
-              <p className="mt-3 whitespace-pre-line text-[0.92rem] leading-relaxed text-cacao-600">
+              <h2 className="text-[1.15rem] text-leaf-900">Sobre este produto</h2>
+              <p className="mt-3 whitespace-pre-line text-[0.92rem] leading-relaxed text-leaf-600">
                 {product.description}
               </p>
 
@@ -234,26 +235,28 @@ export default function ProductDetail() {
                   ['Embalagem', 'Kraft biodegradável'],
                 ].map(([label, value]) => (
                   <div key={label} className="rounded-xl bg-cream-200/70 px-4 py-3">
-                    <dt className="text-[0.7rem] font-bold uppercase tracking-wider text-caramel-600">
+                    <dt className="text-[0.7rem] font-bold uppercase tracking-wider text-lime-600">
                       {label}
                     </dt>
-                    <dd className="mt-1 text-[0.85rem] text-cacao-700">{value}</dd>
+                    <dd className="mt-1 text-[0.85rem] text-leaf-700">{value}</dd>
                   </div>
                 ))}
               </dl>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Relacionados */}
         {related.length > 0 && (
           <section className="mt-20">
-            <h2 className="text-2xl text-cacao-900">Combina com</h2>
-            <div className="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <Reveal>
+              <h2 className="text-2xl text-leaf-900">Combina com</h2>
+            </Reveal>
+            <Stagger className="mt-7 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((item) => (
                 <ProductCard key={item.id} product={item} compact />
               ))}
-            </div>
+            </Stagger>
           </section>
         )}
       </Container>

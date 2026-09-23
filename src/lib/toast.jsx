@@ -44,7 +44,7 @@ export function ToastProvider({ children }) {
               toast.tone === 'error'
                 ? 'bg-red-600/95 text-white'
                 : toast.tone === 'info'
-                  ? 'bg-cacao-900/95 text-cream-100'
+                  ? 'bg-leaf-900/95 text-cream-100'
                   : 'bg-sage-600/95 text-white'
             }`}
           >

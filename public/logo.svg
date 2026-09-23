@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Healthy Menu Floripa — Seu cardápio saudável">
+  <title>Healthy Menu Floripa</title>
+  <defs>
+    <path id="hmf-top" d="M 50 200 A 150 150 0 0 1 350 200" fill="none" />
+    <path id="hmf-bottom" d="M 50 200 A 150 150 0 0 0 350 200" fill="none" />
+    <linearGradient id="hmf-apple" x1="0.15" y1="0" x2="0.85" y2="1">
+      <stop offset="0%" stop-color="#BCE283" />
+      <stop offset="52%" stop-color="#A0D364" />
+      <stop offset="100%" stop-color="#7EB445" />
+    </linearGradient>
+  </defs>
+
+  <!-- Disco -->
+  <circle cx="200" cy="200" r="197" fill="#ffffff" />
+  <circle cx="200" cy="200" r="197" fill="none" stroke="#DCEBD2" stroke-width="3" />
+
+  <!-- Maçã -->
+  <g transform="translate(36 36.4) scale(0.82)">
+    <path
+      d="M200 134c-16-24-42-34-66-25-28 10-43 41-38 75 5 38 32 80 62 89 13 4 22-3 31-3s18 7 31 3c30-9 57-51 62-89 5-34-10-65-38-75-24-9-50 1-66 25z"
+      fill="url(#hmf-apple)"
+    />
+    <!-- Cabo -->
+    <path d="M197 133c-3-17 1-30 10-39 4 13 2 27-3 38z" fill="#2F6B32" />
+    <!-- Folha -->
+    <path
+      d="M212 102c12-18 38-25 56-18-8 20-31 33-51 29-5-1-7-6-5-11z"
+      fill="#A9D86E"
+      transform="rotate(-12 240 96)"
+    />
+    <!-- M de "Menu" vazado -->
+    <path
+      d="M164 214v-13a19 19 0 0 1 38 0v13m0-13a19 19 0 0 1 38 0v13"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="15"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <!-- Brilho na borda inferior esquerda -->
+    <path
+      d="M124 250c16 18 44 27 74 24"
+      fill="none"
+      stroke="#ffffff"
+      stroke-width="7"
+      stroke-linecap="round"
+      opacity="0.85"
+    />
+  </g>
+
+  <!-- Nome na curva superior -->
+  <text fill="#1F5B2C" font-family="Georgia, 'Times New Roman', serif" font-size="31" font-weight="600" letter-spacing="0.6">
+    <textPath href="#hmf-top" startOffset="50%" text-anchor="middle">Healthy Menu Floripa</textPath>
+  </text>
+
+  <!-- Assinatura na curva inferior -->
+  <text fill="#1F5B2C" font-family="Caveat, 'Segoe Script', 'Brush Script MT', cursive" font-size="36" font-weight="600">
+    <textPath href="#hmf-bottom" startOffset="50%" text-anchor="middle">Seu cardápio saudável</textPath>
+  </text>
+</svg>

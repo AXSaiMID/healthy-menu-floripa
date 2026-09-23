@@ -155,7 +155,7 @@ export default function Finance() {
               <Download className="h-4 w-4" />
               Exportar pedidos
             </Button>
-            <Button variant="caramel" onClick={() => openExpense(null)}>
+            <Button variant="lime" onClick={() => openExpense(null)}>
               <Plus className="h-4 w-4" />
               Nova despesa
             </Button>
@@ -178,8 +178,8 @@ export default function Finance() {
                 className={cx(
                   'rounded-full border px-3.5 py-1.5 text-[0.8rem] font-semibold transition',
                   preset === option.days
-                    ? 'border-cacao-900 bg-cacao-900 text-cream-100'
-                    : 'border-cream-300 bg-white text-cacao-600 hover:border-cacao-300',
+                    ? 'border-leaf-900 bg-leaf-900 text-cream-100'
+                    : 'border-cream-300 bg-white text-leaf-600 hover:border-leaf-300',
                 )}
               >
                 {option.label}
@@ -247,7 +247,7 @@ export default function Finance() {
 
         <Panel title="Despesas por categoria">
           {Object.keys(expensesData.byCategory).length === 0 ? (
-            <p className="py-6 text-center text-[0.85rem] text-cacao-400">
+            <p className="py-6 text-center text-[0.85rem] text-leaf-400">
               Nenhuma despesa lançada neste período.
             </p>
           ) : (
@@ -265,8 +265,8 @@ export default function Finance() {
             </div>
           )}
           <div className="mt-5 flex items-center justify-between border-t border-cream-200 pt-4 text-[0.88rem]">
-            <span className="font-semibold text-cacao-700">Total de despesas</span>
-            <span className="font-display text-xl text-cacao-900">{brl(expensesData.total)}</span>
+            <span className="font-semibold text-leaf-700">Total de despesas</span>
+            <span className="font-display text-xl text-leaf-900">{brl(expensesData.total)}</span>
           </div>
         </Panel>
       </div>
@@ -285,11 +285,11 @@ export default function Finance() {
           </div>
         ) : expensesData.expenses.length === 0 ? (
           <div className="px-5 py-12 text-center">
-            <p className="text-[0.95rem] text-cacao-700">Nenhuma despesa neste período</p>
-            <p className="mt-2 text-[0.84rem] text-cacao-500">
+            <p className="text-[0.95rem] text-leaf-700">Nenhuma despesa neste período</p>
+            <p className="mt-2 text-[0.84rem] text-leaf-500">
               Lance compras de insumos, embalagens e entregas para acompanhar o lucro real.
             </p>
-            <Button variant="caramel" className="mt-5" onClick={() => openExpense(null)}>
+            <Button variant="lime" className="mt-5" onClick={() => openExpense(null)}>
               <Plus className="h-4 w-4" />
               Lançar primeira despesa
             </Button>
@@ -298,23 +298,23 @@ export default function Finance() {
           <Table head={['Data', 'Descrição', 'Categoria', 'Valor', '']}>
             {expensesData.expenses.map((expense) => (
               <tr key={expense.id} className="transition hover:bg-cream-200/40">
-                <td className="px-4 py-3 text-[0.84rem] text-cacao-500">{formatDate(expense.date)}</td>
+                <td className="px-4 py-3 text-[0.84rem] text-leaf-500">{formatDate(expense.date)}</td>
                 <td className="px-4 py-3">
-                  <span className="font-medium text-cacao-800">{expense.description}</span>
+                  <span className="font-medium text-leaf-800">{expense.description}</span>
                   {expense.notes && (
-                    <span className="block text-[0.74rem] text-cacao-400">{expense.notes}</span>
+                    <span className="block text-[0.74rem] text-leaf-400">{expense.notes}</span>
                   )}
                 </td>
                 <td className="px-4 py-3">
                   <span className="chip">{expense.category}</span>
                 </td>
-                <td className="px-4 py-3 font-semibold text-cacao-900">{brl(expense.amount)}</td>
+                <td className="px-4 py-3 font-semibold text-leaf-900">{brl(expense.amount)}</td>
                 <td className="px-4 py-3">
                   <div className="flex justify-end gap-1.5">
                     <button
                       type="button"
                       onClick={() => openExpense(expense)}
-                      className="grid h-8 w-8 place-items-center rounded-full border border-cream-300 text-cacao-600 transition hover:border-cacao-900"
+                      className="grid h-8 w-8 place-items-center rounded-full border border-cream-300 text-leaf-600 transition hover:border-leaf-900"
                       aria-label="Editar despesa"
                     >
                       <Pencil className="h-3.5 w-3.5" />
@@ -322,7 +322,7 @@ export default function Finance() {
                     <button
                       type="button"
                       onClick={() => removeExpense(expense)}
-                      className="grid h-8 w-8 place-items-center rounded-full border border-cream-300 text-cacao-400 transition hover:border-red-400 hover:text-red-600"
+                      className="grid h-8 w-8 place-items-center rounded-full border border-cream-300 text-leaf-400 transition hover:border-red-400 hover:text-red-600"
                       aria-label="Excluir despesa"
                     >
                       <Trash2 className="h-3.5 w-3.5" />
@@ -338,11 +338,11 @@ export default function Finance() {
       <Panel className="mt-6" title="Resultado do período" description="Como chegamos ao lucro líquido.">
         <dl className="space-y-2.5 text-[0.9rem]">
           {[
-            ['Receita bruta de vendas', kpi?.revenue, 'text-cacao-900'],
-            ['(-) Custo dos produtos vendidos', -(kpi?.productCost ?? 0), 'text-cacao-600'],
-            ['(=) Lucro bruto', kpi?.grossProfit, 'font-semibold text-cacao-900'],
-            ['(-) Despesas operacionais', -(kpi?.expenses ?? 0), 'text-cacao-600'],
-            ['(=) Lucro líquido', kpi?.netProfit, 'font-bold text-cacao-900'],
+            ['Receita bruta de vendas', kpi?.revenue, 'text-leaf-900'],
+            ['(-) Custo dos produtos vendidos', -(kpi?.productCost ?? 0), 'text-leaf-600'],
+            ['(=) Lucro bruto', kpi?.grossProfit, 'font-semibold text-leaf-900'],
+            ['(-) Despesas operacionais', -(kpi?.expenses ?? 0), 'text-leaf-600'],
+            ['(=) Lucro líquido', kpi?.netProfit, 'font-bold text-leaf-900'],
           ].map(([label, value, className]) => (
             <div
               key={label}
@@ -356,7 +356,7 @@ export default function Finance() {
             </div>
           ))}
         </dl>
-        <p className="mt-4 text-[0.78rem] leading-relaxed text-cacao-400">
+        <p className="mt-4 text-[0.78rem] leading-relaxed text-leaf-400">
           O custo dos produtos usa o campo “custo de produção” cadastrado em cada produto. Mantenha os
           valores atualizados para que o lucro reflita a realidade.
         </p>
@@ -372,7 +372,7 @@ export default function Finance() {
             <Button variant="outline" onClick={() => setEditing(null)}>
               Cancelar
             </Button>
-            <Button variant="caramel" onClick={saveExpense} loading={saving}>
+            <Button variant="lime" onClick={saveExpense} loading={saving}>
               Salvar
             </Button>
           </>

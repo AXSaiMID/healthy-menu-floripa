@@ -14,7 +14,7 @@ export default function ProductImage({ src, alt = '', className, placeholderClas
   if (!src || failed) {
     return (
       <div
-        className={`grid h-full w-full place-items-center bg-gradient-to-br from-cacao-200 via-cream-200 to-caramel-200 ${
+        className={`grid h-full w-full place-items-center bg-gradient-to-br from-leaf-200 via-cream-200 to-lime-200 ${
           placeholderClassName ?? ''
         }`}
         role="img"

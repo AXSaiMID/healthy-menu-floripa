@@ -31,7 +31,8 @@ export default function ProductCard({ product, compact = false }) {
   return (
     <article
       className={cx(
-        'group flex flex-col overflow-hidden rounded-card border border-cream-300 bg-white shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-cacao-200 hover:shadow-lift',
+        'group flex h-full flex-col overflow-hidden rounded-card border border-leaf-100 bg-white shadow-soft',
+        'transition-all duration-500 hover:-translate-y-2 hover:border-leaf-300 hover:shadow-lift',
         soldOut && 'opacity-70',
       )}
     >
@@ -39,21 +40,21 @@ export default function ProductCard({ product, compact = false }) {
         <ProductImage
           src={product.image}
           alt={product.name}
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+          className="h-full w-full object-cover transition-transform duration-[1.1s] group-hover:scale-110"
         />
 
         <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">
           {hasPromo && <Badge tone="dark">Promoção</Badge>}
           {product.tags?.slice(0, compact ? 1 : 2).map((tag) => (
-            <Badge key={tag} tone="caramel">
+            <Badge key={tag} tone="lime">
               {tag}
             </Badge>
           ))}
         </div>
 
         {soldOut && (
-          <div className="absolute inset-0 grid place-items-center bg-cacao-950/50">
-            <span className="rounded-full bg-cream-100 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-cacao-900">
+          <div className="absolute inset-0 grid place-items-center bg-leaf-950/50">
+            <span className="rounded-full bg-cream-100 px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-leaf-900">
               Esgotado
             </span>
           </div>
@@ -61,38 +62,38 @@ export default function ProductCard({ product, compact = false }) {
       </Link>
 
       <div className="flex flex-1 flex-col p-4">
-        <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-caramel-600">
+        <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-lime-600">
           {categoryLabel(product.category)}
         </p>
-        <h3 className="mt-1.5 text-[1.05rem] leading-snug text-cacao-900">
-          <Link to={`/produto/${product.slug}`} className="hover:text-caramel-600">
+        <h3 className="mt-1.5 text-[1.05rem] leading-snug text-leaf-900">
+          <Link to={`/produto/${product.slug}`} className="hover:text-lime-600">
             {product.name}
           </Link>
         </h3>
 
         {!compact && (
-          <p className="mt-2 line-clamp-2 text-[0.83rem] leading-relaxed text-cacao-500">
+          <p className="mt-2 line-clamp-2 text-[0.83rem] leading-relaxed text-leaf-500">
             {product.shortDesc}
           </p>
         )}
 
         {product.unit && (
-          <p className="mt-2.5 text-[0.72rem] font-medium text-cacao-400">{product.unit}</p>
+          <p className="mt-2.5 text-[0.72rem] font-medium text-leaf-400">{product.unit}</p>
         )}
 
         <div className="mt-auto flex items-end justify-between gap-3 pt-4">
           <div>
             {hasPromo && (
-              <span className="block text-[0.72rem] text-cacao-400 line-through">
+              <span className="block text-[0.72rem] text-leaf-400 line-through">
                 {brl(product.price)}
               </span>
             )}
-            <span className="font-display text-xl font-semibold text-cacao-900">{brl(price)}</span>
+            <span className="font-display text-xl font-semibold text-leaf-900">{brl(price)}</span>
           </div>
 
           <Button
             size="sm"
-            variant={justAdded ? 'caramel' : 'primary'}
+            variant={justAdded ? "lime" : "primary"}
             onClick={handleAdd}
             disabled={soldOut}
             aria-label={`Adicionar ${product.name} ao carrinho`}

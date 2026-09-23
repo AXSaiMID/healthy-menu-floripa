@@ -81,7 +81,7 @@ export function todayISO(offsetDays = 0) {
 
 /* -------------------------------- Diversos -------------------------------- */
 export const STATUS_META = {
-  novo: { label: 'Novo', tone: 'bg-caramel-200 text-cacao-800', dot: 'bg-caramel-500' },
+  novo: { label: 'Novo', tone: 'bg-lime-200 text-leaf-800', dot: 'bg-lime-500' },
   confirmado: { label: 'Confirmado', tone: 'bg-blue-100 text-blue-800', dot: 'bg-blue-500' },
   producao: { label: 'Em produção', tone: 'bg-amber-100 text-amber-800', dot: 'bg-amber-500' },
   enviado: { label: 'Enviado', tone: 'bg-indigo-100 text-indigo-800', dot: 'bg-indigo-500' },

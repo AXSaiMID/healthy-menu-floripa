@@ -60,7 +60,7 @@ export default function Customers() {
           label="Ticket médio"
           value={brl(totals.orders ? totals.spent / totals.orders : 0)}
           hint="Média geral entre todos os clientes"
-          tone="caramel"
+          tone="lime"
         />
         <StatCard
           label="Clientes recorrentes"
@@ -80,7 +80,7 @@ export default function Customers() {
         title="Base de clientes"
         actions={
           <div className="relative">
-            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-cacao-300" />
+            <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-leaf-300" />
             <input
               className="field w-64 pl-10"
               placeholder="Buscar por nome ou telefone"
@@ -98,8 +98,8 @@ export default function Customers() {
           </div>
         ) : filtered.length === 0 ? (
           <div className="px-5 py-14 text-center">
-            <p className="text-[0.95rem] text-cacao-700">Nenhum cliente encontrado</p>
-            <p className="mt-2 text-[0.84rem] text-cacao-500">
+            <p className="text-[0.95rem] text-leaf-700">Nenhum cliente encontrado</p>
+            <p className="mt-2 text-[0.84rem] text-leaf-500">
               Os clientes aparecem aqui automaticamente conforme os pedidos chegam pelo site.
             </p>
           </div>
@@ -108,22 +108,22 @@ export default function Customers() {
             {filtered.map((customer) => (
               <tr key={customer.phone} className="transition hover:bg-cream-200/40">
                 <td className="px-4 py-3">
-                  <span className="font-semibold text-cacao-900">{customer.name}</span>
+                  <span className="font-semibold text-leaf-900">{customer.name}</span>
                   {customer.email && (
-                    <span className="block text-[0.74rem] text-cacao-400">{customer.email}</span>
+                    <span className="block text-[0.74rem] text-leaf-400">{customer.email}</span>
                   )}
                 </td>
-                <td className="px-4 py-3 text-[0.84rem] text-cacao-600">
+                <td className="px-4 py-3 text-[0.84rem] text-leaf-600">
                   {maskPhone(customer.phone)}
                 </td>
-                <td className="px-4 py-3 text-[0.86rem] font-semibold text-cacao-800">
+                <td className="px-4 py-3 text-[0.86rem] font-semibold text-leaf-800">
                   {customer.orders}
                 </td>
-                <td className="px-4 py-3 font-semibold text-cacao-900">{brl(customer.spent)}</td>
-                <td className="px-4 py-3 text-[0.84rem] text-cacao-600">{brl(customer.avgTicket)}</td>
-                <td className="px-4 py-3 text-[0.82rem] text-cacao-500">
+                <td className="px-4 py-3 font-semibold text-leaf-900">{brl(customer.spent)}</td>
+                <td className="px-4 py-3 text-[0.84rem] text-leaf-600">{brl(customer.avgTicket)}</td>
+                <td className="px-4 py-3 text-[0.82rem] text-leaf-500">
                   {formatDate(customer.lastOrder)}
-                  <span className="block text-[0.72rem] text-cacao-400">
+                  <span className="block text-[0.72rem] text-leaf-400">
                     {relativeDays(customer.lastOrder)}
                   </span>
                 </td>

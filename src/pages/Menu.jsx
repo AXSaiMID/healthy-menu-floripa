@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 
 import ProductCard from '../components/ProductCard.jsx';
 import { Button, Container, EmptyState, SectionHeading } from '../components/ui.jsx';
+import { Reveal, Stagger } from '../components/motion.jsx';
 import { useSite } from '../lib/site.jsx';
 import { cx } from '../lib/format.js';
 
@@ -57,11 +58,13 @@ export default function Menu() {
     <>
       <section className="border-b border-cream-300 bg-white py-14">
         <Container>
-          <SectionHeading
-            eyebrow="Cardápio"
-            title="Escolha, monte seu carrinho e envie pelo WhatsApp"
-            description="Brownies artesanais, combos para presentear, wraps, tapiocas e refeições fit. Entrega no Norte da Ilha e envio para todo o Brasil."
-          />
+          <Reveal>
+            <SectionHeading
+              eyebrow="Cardápio"
+              title="Escolha, monte seu carrinho e envie pelo WhatsApp"
+              description="Brownies artesanais, combos para presentear, wraps, tapiocas e refeições fit. Entrega no Norte da Ilha e envio para todo o Brasil."
+            />
+          </Reveal>
 
           <div className="mt-9 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="no-scrollbar -mx-5 flex gap-2 overflow-x-auto px-5 pb-1 lg:mx-0 lg:px-0">
@@ -89,7 +92,7 @@ export default function Menu() {
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="1.8"
-                  className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-cacao-300"
+                  className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-leaf-300"
                 >
                   <circle cx="11" cy="11" r="6.5" />
                   <path d="M16 16l4.5 4.5" strokeLinecap="round" />
@@ -123,8 +126,8 @@ export default function Menu() {
       <section className="py-14">
         <Container>
           {currentCategory && (
-            <p className="mb-8 max-w-2xl text-[0.92rem] text-cacao-500">
-              <span className="font-semibold text-cacao-800">{currentCategory.label}:</span>{' '}
+            <p className="mb-8 max-w-2xl text-[0.92rem] text-leaf-500">
+              <span className="font-semibold text-leaf-800">{currentCategory.label}:</span>{' '}
               {currentCategory.blurb}
             </p>
           )}
@@ -161,11 +164,11 @@ export default function Menu() {
           )}
 
           {filtered.length > 0 && (
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <Stagger key={`${category}-${sort}-${search}`} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filtered.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
-            </div>
+            </Stagger>
           )}
         </Container>
       </section>
@@ -180,9 +183,10 @@ function FilterPill({ active, onClick, children }) {
       onClick={onClick}
       className={cx(
         'shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-[0.82rem] font-semibold transition',
+        'transition-all duration-300 active:scale-95',
         active
-          ? 'border-cacao-900 bg-cacao-900 text-cream-100'
-          : 'border-cream-300 bg-white text-cacao-600 hover:border-cacao-300',
+          ? 'border-leaf-900 bg-leaf-900 text-cream-50 shadow-soft'
+          : 'border-leaf-200 bg-white text-leaf-700 hover:-translate-y-0.5 hover:border-leaf-400',
       )}
     >
       {children}
