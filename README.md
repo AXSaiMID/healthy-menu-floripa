@@ -104,6 +104,29 @@ proxy da plataforma e vale enquanto este ambiente estiver ativo.
 Para um endereço definitivo, com domínio próprio e banco persistente, siga o
 **[DEPLOY.md](DEPLOY.md)** — há um `Dockerfile` e um `render.yaml` prontos.
 
+### 📦 Versão empacotada para Netlify (`.zip`)
+
+```bash
+npm run build:netlify   # gera a pasta .build/netlify pronta para publicar
+npm run zip:netlify     # gera também healthy-menu-floripa-netlify.zip
+```
+
+O Netlify publica **arquivos**, não aplicações Node — não existe servidor nem SQLite lá.
+Para o site não abrir vazio, esse build compila o projeto em **modo estático**: o catálogo
+(com preços e custos reais) é congelado em `src/lib/static/snapshot.json` e as gravações
+passam a acontecer no `localStorage` do navegador, com as mesmas regras do servidor
+(frete, pedido mínimo, custo, lucro, KPIs do financeiro).
+
+| | Com servidor (Render/Docker) | Modo estático (Netlify) |
+| --- | --- | --- |
+| Cardápio, fotos e carrinho | ✅ | ✅ |
+| Pedido enviado ao WhatsApp | ✅ | ✅ |
+| Painel e financeiro | ✅ compartilhado entre aparelhos | ⚠️ só no navegador de quem usa |
+| Dados sobrevivem a limpar o navegador | ✅ | ❌ (catálogo de exemplo volta) |
+
+Quem usa o painel na versão estática vê um aviso fixo e um botão **Restaurar dados de exemplo**.
+Para o controle financeiro de verdade, use a versão com servidor (`DEPLOY.md`).
+
 ---
 
 ## Como rodar
@@ -149,9 +172,14 @@ marcado como `noindex`. Requer **Node 22.5+**.
 Com o servidor rodando:
 
 ```bash
-npm run smoke          # 25 verificações da API e do painel
+npm run smoke          # 25 verificações da API e do painel (servidor rodando)
+npm run test:static    # 58 verificações do modo estático, sem navegador
 npm run check:images   # confere se todas as fotos do catálogo existem e são válidas
 ```
+
+O `test:static` cobre justamente o que roda no Netlify: catálogo, frete e pedido mínimo,
+criação de pedido, mensagem do WhatsApp, painel financeiro, produtos, despesas, clientes,
+sessão e exportação CSV.
 
 O `check:images` percorre os produtos do banco, confirma que cada arquivo existe em
 `public/`, que o conteúdo é uma imagem de verdade (não um arquivo truncado) e ainda
@@ -175,6 +203,8 @@ lista arquivos de foto que nenhum produto está usando.
 ```
 Dockerfile              Imagem de produção (Railway, Fly, VPS…)
 render.yaml             Blueprint do Render (deploy com um clique)
+netlify.toml            Deploy estático pelo Netlify (publica .build/netlify)
+netlify/                _redirects, _headers e LEIA-ME que entram no pacote .zip
 DEPLOY.md               Passo a passo para publicar com domínio próprio
 server/                 API Express + banco SQLite
   db.js                 Conexão, schema e migrações leves
@@ -192,12 +222,17 @@ src/
   admin/                AdminApp, Login, AdminLayout, Dashboard, Orders, Products,
                         Finance, Customers, Settings
   lib/                  api.js, cart.jsx, site.jsx, toast.jsx, format.js, whatsapp.js
+  lib/static/           Modo estático: snapshot.json (catálogo congelado),
+                        store.js (banco no navegador) e api.js (mesma API, sem servidor)
   index.css             Design system (Tailwind 4 + paleta cacau/caramelo/creme/sálvia)
 
 public/logo.svg         Logo oficial em vetor
 public/favicon.svg      Ícone do navegador (maçã da marca)
 public/images/          Fotografia dos produtos
 scripts/smoke.mjs       Testes de ponta a ponta da API
+scripts/test-static.mjs Testes do modo estático (o que roda no Netlify)
+scripts/export-snapshot.mjs  Congela o catálogo do SQLite para o modo estático
+scripts/build-netlify.mjs    Compila e empacota o site para o Netlify
 ```
 
 ## Endpoints principais
@@ -216,6 +251,10 @@ scripts/smoke.mjs       Testes de ponta a ponta da API
 | GET/PUT | `/api/admin/settings` | Configurações da empresa |
 | GET | `/api/health` | Verificação de saúde (usada pelas hospedagens) |
 | GET | `/robots.txt` · `/sitemap.xml` | SEO — gerados dinamicamente com o domínio em uso |
+
+Todas essas rotas têm uma implementação equivalente em `src/lib/static/api.js`, usada
+quando o site é publicado sem servidor (Netlify). O front-end não sabe qual das duas
+está ativa — a escolha acontece em `src/lib/api.js` pela variável `VITE_STATIC_MODE`.
 
 ## Personalização rápida
 

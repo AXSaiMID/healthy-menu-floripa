@@ -16,6 +16,7 @@ import {
 
 import { LogoMark } from '../components/Logo.jsx';
 import { useAuth } from './AdminApp.jsx';
+import DemoNotice from './DemoNotice.jsx';
 import { adminApi } from '../lib/api.js';
 import { cx } from '../lib/format.js';
 
@@ -157,6 +158,7 @@ export default function AdminLayout() {
         </header>
 
         <main className="px-5 py-7 lg:px-9 lg:py-9">
+          <DemoNotice />
           <Outlet />
         </main>
       </div>

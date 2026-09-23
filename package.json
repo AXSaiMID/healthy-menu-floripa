@@ -10,11 +10,14 @@
   "scripts": {
     "dev": "node scripts/dev.js",
     "build": "vite build",
+    "build:netlify": "node scripts/build-netlify.mjs",
+    "zip:netlify": "node scripts/build-netlify.mjs --zip",
     "start": "node server/index.js",
     "serve": "npm run build && node server/index.js",
     "seed": "node server/seed.js",
     "smoke": "node scripts/smoke.mjs",
-    "check:images": "node scripts/check-images.mjs"
+    "check:images": "node scripts/check-images.mjs",
+    "test:static": "node scripts/test-static.mjs"
   },
   "dependencies": {
     "@fontsource-variable/caveat": "^5.3.0",

@@ -1,0 +1,4 @@
+# SPA: qualquer rota que não seja um arquivo real cai no index.html.
+# É isso que faz /cardapio, /produto/brownie-50-cacau-classico e /admin
+# funcionarem quando o visitante recarrega a página ou abre o link direto.
+/*    /index.html   200

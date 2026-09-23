@@ -1,7 +1,13 @@
 # Publicando o site 🌐
 
 O site da Healthy Menu Floripa é uma aplicação **Node + React**: um único processo serve tanto
-as páginas quanto a API (pedidos, catálogo e painel). Existem duas formas de colocá-lo no ar.
+as páginas quanto a API (pedidos, catálogo e painel). Existem três formas de colocá-lo no ar:
+
+| | Onde | Servidor | Painel com dados compartilhados |
+| --- | --- | --- | --- |
+| 1 | Este ambiente (link ao vivo) | ✅ | ✅ |
+| 2 | Netlify (pacote `.zip`) | ❌ | ❌ (só no navegador) |
+| 3 | Render/Railway/Docker | ✅ | ✅ |
 
 ---
 
@@ -26,13 +32,39 @@ NODE_ENV=production npm start  # serve site + API na porta 3001
 
 ---
 
-## 2. Endereço definitivo (domínio próprio)
+## 2. Netlify — pacote `.zip` (rápido, sem servidor)
+
+O Netlify publica arquivos estáticos: não roda Node nem SQLite. Para o site não abrir
+vazio, existe um build próprio que congela o catálogo no navegador.
+
+```bash
+npm run zip:netlify     # gera healthy-menu-floripa-netlify.zip (2,9 MB)
+```
+
+**Publicar:** entre em <https://app.netlify.com/drop> e arraste o `.zip`. Em segundos o site
+está no ar. Para publicar conectando o repositório, o `netlify.toml` já traz o comando
+(`npm run build:netlify`) e a pasta de publicação (`.build/netlify`).
+
+**O que funciona igual:** cardápio com fotos, carrinho com todos os dados do comprador,
+frete e pedido mínimo calculados, envio do pedido para o WhatsApp da loja e o painel
+completo (pedidos, clientes, financeiro, despesas, produtos, configurações, CSV).
+
+**A diferença:** sem servidor, o painel grava no `localStorage` — cada navegador vê os seus
+próprios dados e o histórico se perde ao limpar o navegador. Serve para apresentar o projeto,
+treinar a equipe e receber pedidos de verdade pelo WhatsApp; **não** serve como controle
+financeiro oficial. Para isso, use a opção 3 abaixo (servidor + banco em arquivo).
+
+O pacote inclui um `LEIA-ME.txt` com esse aviso, escrito para quem for usar o painel.
+
+---
+
+## 3. Endereço definitivo (domínio próprio)
 
 Para um endereço permanente, com HTTPS, domínio da empresa e banco de dados que não se perde,
 hospede a aplicação em um serviço que rode Node. **Railway**, **Render** e **Fly.io** funcionam
 bem e têm plano gratuito. Abaixo, o caminho mais rápido:
 
-### Opção A — Render (tem `render.yaml` pronto)
+### Opção A — Render (tem `render.yaml` pronto) — recomendado para o painel oficial
 
 1. Crie uma conta em [render.com](https://render.com) e conecte o GitHub.
 2. **New → Blueprint** e escolha o repositório `AXSaiMID/healthy-menu-floripa`.

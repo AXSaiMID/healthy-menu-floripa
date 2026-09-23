@@ -1,3 +1,20 @@
+import * as staticApi from './static/api.js';
+
+/**
+ * Modo estático x modo servidor.
+ *
+ * - `npm run build`          → API HTTP (Express + SQLite, /api/…)
+ * - `npm run build:netlify`  → API local no navegador (host só de arquivos)
+ *
+ * Fora do build estático a constante vira `false` e o bundle descarta o ramo.
+ */
+const STATIC_MODE = import.meta.env.VITE_STATIC_MODE === 'true';
+
+export const isStaticMode = STATIC_MODE;
+
+/** Contador de pedidos/estoque vive no navegador: dá para voltar ao exemplo. */
+export const resetDemoData = STATIC_MODE ? staticApi.resetDemoData : null;
+
 const BASE = '/api';
 
 async function request(path, { method = 'GET', body, signal } = {}) {
@@ -28,14 +45,14 @@ export const api = {
   del: (path) => request(path, { method: 'DELETE' }),
 };
 
-export const publicApi = {
+const httpPublicApi = {
   bootstrap: () => api.get('/public/bootstrap'),
   settings: () => api.get('/public/settings'),
   products: () => api.get('/public/products'),
   createOrder: (payload) => api.post('/public/orders', payload),
 };
 
-export const authApi = {
+const httpAuthApi = {
   me: () => api.get('/auth/me'),
   login: (email, password) => api.post('/auth/login', { email, password }),
   logout: () => api.post('/auth/logout'),
@@ -43,7 +60,7 @@ export const authApi = {
     api.put('/auth/password', { currentPassword, newPassword }),
 };
 
-export const adminApi = {
+const httpAdminApi = {
   dashboard: (range = {}) => {
     const params = new URLSearchParams();
     if (range.from) params.set('from', range.from);
@@ -81,7 +98,7 @@ export const adminApi = {
   saveSettings: (payload) => api.put('/admin/settings', payload),
 };
 
-export async function downloadOrdersCSV() {
+async function httpDownloadOrdersCSV() {
   const response = await fetch(`${BASE}/admin/orders/export.csv`, { credentials: 'same-origin' });
   if (!response.ok) throw new Error('Não foi possível exportar os pedidos.');
   const blob = await response.blob();
@@ -94,3 +111,11 @@ export async function downloadOrdersCSV() {
   link.remove();
   URL.revokeObjectURL(url);
 }
+
+/* ---------------------------------------------------------------------- */
+/* Despacho: API HTTP (servidor) ou API local (host estático)             */
+/* ---------------------------------------------------------------------- */
+export const publicApi = STATIC_MODE ? staticApi.publicApi : httpPublicApi;
+export const authApi = STATIC_MODE ? staticApi.authApi : httpAuthApi;
+export const adminApi = STATIC_MODE ? staticApi.adminApi : httpAdminApi;
+export const downloadOrdersCSV = STATIC_MODE ? staticApi.downloadOrdersCSV : httpDownloadOrdersCSV;

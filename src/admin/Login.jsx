@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button, Spinner, WhatsAppIcon } from '../components/ui.jsx';
 import { Logo } from '../components/Logo.jsx';
 import { FloatingDecor, GradientBlobs } from '../components/motion.jsx';
-import { authApi } from '../lib/api.js';
+import { authApi, isStaticMode } from '../lib/api.js';
 
 export default function Login({ onSuccess }) {
   const [email, setEmail] = useState('');
@@ -118,7 +118,9 @@ export default function Login({ onSuccess }) {
               Senha: <strong>healthy2024</strong>
             </p>
             <p className="mt-2 text-[0.72rem] leading-relaxed text-leaf-500">
-              Troque a senha em Configurações depois do primeiro acesso.
+              {isStaticMode
+                ? 'Nesta demonstração publicada como site estático, os dados do painel ficam salvos apenas neste navegador.'
+                : 'Troque a senha em Configurações depois do primeiro acesso.'}
             </p>
           </div>
 
