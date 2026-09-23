@@ -1,0 +1,23 @@
+# Blueprint do Render (https://render.com) — deploy com um clique.
+# Crie um "Blueprint Instance" apontando para este repositório.
+services:
+  - type: web
+    name: healthy-menu-floripa
+    runtime: node
+    plan: free
+    region: oregon
+    branch: main
+    buildCommand: npm ci && npm run build
+    startCommand: node server/index.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 22.22.3
+      - key: DATA_DIR
+        value: /opt/render/project/src/data
+      - key: ADMIN_EMAIL
+        value: admin@healthymenufloripa.com.br
+      - key: ADMIN_PASSWORD
+        sync: false   # defina uma senha forte no painel do Render

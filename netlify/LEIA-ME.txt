@@ -1,0 +1,108 @@
+================================================================
+ HEALTHY MENU FLORIPA — SITE PRONTO PARA O NETLIFY
+================================================================
+
+Esta pasta é o site completo, já compilado: é só publicar.
+Ela contém o site (cardápio, carrinho, pedido pelo WhatsApp) e o
+painel administrativo, tudo funcionando.
+
+
+----------------------------------------------------------------
+ COMO PUBLICAR (leva menos de 3 minutos)
+----------------------------------------------------------------
+
+MÉTODO 1 — Arrastar e soltar (mais fácil)
+
+  1. Entre em https://app.netlify.com/drop
+  2. Crie uma conta gratuita (pode entrar com Google ou GitHub)
+  3. Arraste o ARQUIVO ZIP (ou esta pasta descompactada) para a área
+     pontilhada da página
+  4. Em segundos o Netlify mostra o endereço do site, por exemplo:
+     https://healthy-menu-floripa.netlify.app
+
+MÉTODO 2 — Conectar o repositório do GitHub (atualiza sozinho)
+
+  1. No Netlify: "Add new site" > "Import an existing project"
+  2. Escolha o GitHub e o repositório AXSaiMID/healthy-menu-floripa
+  3. O arquivo netlify.toml (que está no repositório) já informa
+     tudo o que o Netlify precisa — só confirme:
+        Build command:  npm run build:netlify
+        Publish dir:    .build/netlify
+  4. Clique em Deploy. A cada envio de código, o site se atualiza.
+
+DEPOIS DE PUBLICAR
+
+  · Endereço do painel:  seusite.netlify.app/admin
+    E-mail:  admin@healthymenufloripa.com.br
+    Senha:   healthy2024
+  · Para usar um domínio próprio (ex.: healthymenufloripa.com.br):
+    Site configuration > Domain management > Add a domain.
+
+
+----------------------------------------------------------------
+ O QUE JÁ ESTÁ FUNCIONANDO
+----------------------------------------------------------------
+
+  ✔ Página inicial, cardápio com as 6 categorias e 18 produtos
+  ✔ Fotos, descrições, preços, adicionais e produtos em destaque
+  ✔ Carrinho com dados completos do comprador (nome, WhatsApp,
+    e-mail, CPF, endereço completo, complemento, observações)
+  ✔ Frete calculado na hora (R$ 8,00 · grátis acima de R$ 80,00)
+    e envio nacional grátis acima de R$ 180,00
+  ✔ Pedido enviado direto para o WhatsApp da loja: (48) 92000-8689
+  ✔ Painel com visão geral, pedidos, clientes, financeiro
+    (receita, custo, lucro bruto, lucro líquido, margem), despesas,
+    produtos e configurações
+  ✔ Exportação dos pedidos em planilha CSV
+  ✔ Layout responsivo (celular, tablet e computador)
+
+
+----------------------------------------------------------------
+ IMPORTANTE — MODO DEMONSTRAÇÃO
+----------------------------------------------------------------
+
+O Netlify publica SITES (arquivos), e não programas de servidor.
+Como este site não tem servidor aqui, os dados do painel ficam
+salvos apenas no navegador de quem usa — é ótimo para apresentar o
+projeto, testar e treinar a equipe, mas NÃO serve para o controle
+financeiro de verdade, porque:
+
+  · cada pessoa vê os seus próprios dados (não é compartilhado);
+  · trocar de navegador ou limpar o histórico apaga o que foi
+    criado ali (o catálogo de exemplo volta pelo botão
+    "Restaurar dados de exemplo", dentro do painel).
+
+O que funciona 100% para o cliente final, em qualquer aparelho:
+  ✔ ver o cardápio, montar o carrinho e enviar o pedido no WhatsApp.
+
+PAINEL DE VERDADE (dados compartilhados entre aparelhos)
+
+O mesmo projeto tem a versão completa, com servidor e banco de dados
+em arquivo. Para ter esse painel, publique o repositório no Render
+(plano gratuito) seguindo o arquivo DEPLOY.md que está no GitHub.
+Em cerca de 10 minutos o painel passa a ser único para toda a equipe.
+
+
+----------------------------------------------------------------
+ DETALHES TÉCNICOS (para quem for mexer depois)
+----------------------------------------------------------------
+
+  index.html ............ página do site (arquivo único do app)
+  404.html .............. cópia do index.html (fallback de rotas)
+  _redirects ............ manda toda rota para o index.html
+  _headers .............. cache longo para /assets, 1 semana p/ fotos
+  assets/ ............... JavaScript e CSS compilados (com hash)
+  images/ ............... fotos do cardápio (JPEG 1408x768)
+  logo.svg / favicon.svg  identidade da marca (versão vetorial)
+
+  Gerado a partir do repositório:
+    https://github.com/AXSaiMID/healthy-menu-floripa
+
+  Para gerar este pacote novamente no computador de quem desenvolve:
+    npm install
+    npm run build:netlify      (e opcionalmente: npm run zip:netlify)
+
+================================================================
+ Healthy Menu Floripa · São João do Rio Vermelho, Florianópolis/SC
+ (48) 92000-8689 · @healthymenufloripa
+================================================================
