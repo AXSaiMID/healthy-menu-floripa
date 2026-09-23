@@ -27,6 +27,15 @@ app.use(cookieParser());
 
 app.use((req, res, next) => {
   res.setHeader('X-Content-Type-Options', 'nosniff');
+
+  /* Fotos do catálogo: em desenvolvimento nunca deixamos cachear.
+     Assim um 404 de uma imagem recém-adicionada não fica preso no navegador
+     nem no proxy do preview. Em produção valem as regras do express.static. */
+  if (!IS_PROD && (req.path.startsWith('/images/') || req.path === '/logo.svg' || req.path === '/favicon.svg')) {
+    res.setHeader('Cache-Control', 'no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+  }
+
   next();
 });
 

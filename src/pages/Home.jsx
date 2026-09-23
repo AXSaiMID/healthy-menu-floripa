@@ -82,6 +82,16 @@ const STEPS = [
   },
 ];
 
+/* Se nenhum produto da categoria tiver foto, usamos uma imagem da casa. */
+const FALLBACK_COVERS = {
+  brownies: '/images/brownie-classico.jpg',
+  combos: '/images/box-brownies.jpg',
+  salgados: '/images/wrap.jpg',
+  refeicoes: '/images/fricasse.jpg',
+  'zero-acucar': '/images/brownie-zero-acucar.jpg',
+  bebidas: '/images/box-brownies.jpg',
+};
+
 const MARQUEE_ITEMS = [
   'Brownie 50% cacau',
   'Zero açúcar',
@@ -139,11 +149,14 @@ export default function Home() {
       {/* ═══════════════════════════════ HERO ═══════════════════════════════ */}
       <section className="relative -mt-[74px] overflow-hidden pt-[74px]">
         {/* Imagem de fundo com parallax */}
-        <div className="absolute inset-0" ref={heroRef}>
+        <div className="absolute inset-0 bg-leaf-950" ref={heroRef}>
           <img
             src="/images/hero-brownie-fresh.jpg"
             alt="Brownies artesanais da Healthy Menu Floripa com folhas de hortelã"
             className="h-[115%] w-full object-cover"
+            onError={(event) => {
+              event.currentTarget.style.display = 'none';
+            }}
           />
           <div className="absolute inset-0 bg-gradient-to-r from-leaf-950/95 via-leaf-950/80 to-leaf-900/45" />
           <div className="absolute inset-0 bg-gradient-to-t from-leaf-950/70 via-transparent to-transparent" />
@@ -304,12 +317,15 @@ export default function Home() {
 
         <Container className="relative grid items-center gap-14 lg:grid-cols-2">
           <Reveal variant="left" className="relative">
-            <div className="overflow-hidden rounded-[2rem] shadow-lift">
+            <div className="overflow-hidden rounded-[2rem] bg-leaf-100 shadow-lift">
               <img
                 src="/images/kitchen-atelier.jpg"
                 alt="Produção artesanal dos brownies Healthy Menu Floripa"
                 className="aspect-[4/5] w-full object-cover transition-transform duration-[1.2s] hover:scale-105"
                 loading="lazy"
+                onError={(event) => {
+                  event.currentTarget.style.display = 'none';
+                }}
               />
             </div>
             <div className="animate-float absolute -bottom-6 -right-2 max-w-[15rem] rounded-2xl border border-leaf-200 bg-white/95 p-5 shadow-lift backdrop-blur sm:right-6">
@@ -371,7 +387,7 @@ export default function Home() {
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {activeCategories.map((category, index) => {
               const items = products.filter((p) => p.category === category.id);
-              const cover = items.find((p) => p.image)?.image;
+              const cover = items.find((p) => p.image)?.image || FALLBACK_COVERS[category.id];
               return (
                 <Reveal key={category.id} delay={(index % 3) + 1} variant="zoom" className="h-full">
                   <Link
@@ -382,6 +398,7 @@ export default function Home() {
                       <ProductImage
                         src={cover}
                         alt={category.label}
+                        label={category.label}
                         className="h-full w-full object-cover transition-transform duration-[1.1s] group-hover:scale-110"
                       />
                       <span className="absolute right-3 top-3 rounded-full bg-white/95 px-3 py-1 text-[0.7rem] font-bold text-leaf-800 shadow-sm backdrop-blur">
@@ -439,6 +456,8 @@ export default function Home() {
                       <ProductImage
                         src={product.image}
                         alt={product.name}
+                        label={product.name}
+                        tone="dark"
                         className="h-full w-full object-cover transition-transform duration-[1.1s] group-hover:scale-110"
                       />
                     </div>

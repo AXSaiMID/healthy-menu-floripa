@@ -56,12 +56,15 @@ export default function About() {
 
       <Container className="py-16">
         <div className="grid items-start gap-12 lg:grid-cols-2">
-          <Reveal variant="left" className="overflow-hidden rounded-[2rem] shadow-lift">
+          <Reveal variant="left" className="overflow-hidden rounded-[2rem] bg-leaf-100 shadow-lift">
             <img
               src="/images/kitchen-atelier.jpg"
               alt="Cozinha artesanal da Healthy Menu Floripa"
               className="aspect-[4/5] w-full object-cover"
               loading="lazy"
+              onError={(event) => {
+                event.currentTarget.style.display = 'none';
+              }}
             />
           </Reveal>
 

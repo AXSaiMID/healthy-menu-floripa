@@ -409,6 +409,19 @@ export default function Products() {
               value={form.image}
               onChange={(event) => setForm({ ...form, image: event.target.value })}
             />
+
+            {form.image && (
+              <div className="mt-3 flex items-center gap-3 rounded-2xl border border-leaf-100 bg-cream-100 p-3">
+                <span className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-cream-200">
+                  <ProductImage src={form.image} alt="" label="sem arquivo" className="h-full w-full object-cover" />
+                </span>
+                <p className="text-[0.74rem] leading-relaxed text-leaf-600">
+                  Prévia da foto. Se aparecer o painel verde com “foto em breve”, o caminho não
+                  encontrou o arquivo — coloque a imagem em <strong>public/images</strong> e use
+                  <strong> /images/nome-do-arquivo.jpg</strong>.
+                </p>
+              </div>
+            )}
           </div>
 
           <div className="sm:col-span-2">

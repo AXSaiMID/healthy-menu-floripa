@@ -124,16 +124,29 @@ npm start         # serve o site + API na porta 3001 (variável PORT para altera
 npm run serve     # build + start em um comando
 ```
 
-### Testes rápidos da API
+### Testes rápidos
 
 Com o servidor rodando:
 
 ```bash
-npm run smoke
+npm run smoke          # 25 verificações da API e do painel
+npm run check:images   # confere se todas as fotos do catálogo existem e são válidas
 ```
 
-Valida catálogo, criação de pedido, pedido mínimo, autenticação, dashboard, produtos,
-despesas, clientes, configurações e exportação CSV (25 verificações).
+O `check:images` percorre os produtos do banco, confirma que cada arquivo existe em
+`public/`, que o conteúdo é uma imagem de verdade (não um arquivo truncado) e ainda
+lista arquivos de foto que nenhum produto está usando.
+
+### Fotos do catálogo
+
+- Ficam em `public/images/` e são referenciadas como `/images/nome-do-arquivo.jpg`.
+- **Se uma foto falhar, o site não mostra ícone de imagem quebrada:** o componente
+  `ProductImage` tenta carregar de novo com uma URL nova (o que dribla um 404 que
+  ficou preso em cache) e, se ainda assim não conseguir, exibe um painel com a maçã
+  da marca escrito “foto em breve”. Ao cadastrar produtos no painel, uma **prévia**
+  mostra na hora se o caminho da imagem está certo.
+- Em desenvolvimento as fotos nunca são cacheadas, então uma imagem recém-adicionada
+  aparece no primeiro recarregamento.
 
 ---
 

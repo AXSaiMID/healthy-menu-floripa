@@ -29,11 +29,14 @@ export default function Login({ onSuccess }) {
   return (
     <div className="grid min-h-screen bg-leaf-950 lg:grid-cols-2">
       {/* Painel visual */}
-      <div className="relative hidden overflow-hidden lg:block">
+      <div className="relative hidden overflow-hidden bg-leaf-950 lg:block">
         <img
           src="/images/hero-brownie-fresh.jpg"
           alt=""
           className="absolute inset-0 h-full w-full object-cover"
+          onError={(event) => {
+            event.currentTarget.style.display = 'none';
+          }}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-leaf-950 via-leaf-950/80 to-leaf-950/40" />
         <div className="relative flex h-full flex-col justify-between p-12">
